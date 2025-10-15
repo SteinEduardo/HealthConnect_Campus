@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include(__DIR__ . '/../app/Config/config.php');
 include('verifica_Cadastro.php');
 
 // Excluir aluno se a solicitação POST for enviada

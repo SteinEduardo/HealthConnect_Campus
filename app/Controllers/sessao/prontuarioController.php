@@ -1,5 +1,5 @@
 <?php
-include('config.php');
+include(__DIR__ . '/../app/Config/config.php');
 
 // Verifica se o ID do paciente foi enviado via GET
 if (!isset($_GET['id'])) {

@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include(__DIR__ . '/../app/Config/config.php');
 
 // Solicita as informações de cadastro e registra no banco
 if (isset($_POST['botao']) && $_POST['botao'] == "Cadastrar") {

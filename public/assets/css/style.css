@@ -1,0 +1,1289 @@
+/* 
+=========== Estilo para o fundo ============
+*/
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+/* 
+=========== Estilo do container principal ============
+*/
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* 
+=========== Caixa de login ============
+*/
+.login-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    width: 320px;
+    padding: 20px 30px;
+    text-align: center;
+    color: #333;
+}
+
+/* 
+=========== Inputs e botões ============
+*/
+.login-input {
+    width: calc(100% - 20px); /* Ajusta para encurtar as laterais */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+.login-input::placeholder {
+    color: #aaa;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(20, 147, 220);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: rgb(17, 54, 71);
+}
+
+/* 
+=========== Estilo para os rótulos ============
+*/
+label {
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: left;
+    font-weight: bold; /* Texto em negrito */
+}
+
+/* 
+=========== Estilo para o fundo ============
+*/
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+    font-family: Arial, sans-serif;
+    color: #fff;
+}
+
+/* 
+=========== Estilo da barra de navegação ============
+*/
+.top-nav {
+    width: 100%;
+    background-image: linear-gradient(to left, rgb(20, 147, 220), rgb(17, 54, 71));
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 60px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 100%;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 20px;
+    height: 60px;
+    line-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: black;
+}
+
+.nav-links a.notification-btn, .nav-links a.user-btn {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: -5px;
+    margin-right: 10px;
+}
+
+.notification-btn img, .user-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+/* 
+=========== Estilo dos filtros (menu aluno) ============
+*/
+.filter-container {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgba(20, 20, 20, 0.85);
+    border-radius: 8px;
+    width: 90%;
+    color: #fff;
+}
+
+.filter-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+}
+
+.name-filter {
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+.name-filter input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.filter-item input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.filter-item input:focus {
+    outline: none;
+    border-color: rgb(20, 147, 220);
+}
+
+.filter-item button {
+    height: 34px;
+    background-color: transparent;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    transition: background-color 0.3s;
+    margin-left: auto;
+}
+
+.filter-item button:hover {
+    background-color: rgba(20, 147, 220, 0.2);
+}
+
+/* 
+=========== Tabela (menu aluno) ============
+*/
+.main-content {
+    width: 90%;
+    margin: 0 auto;
+    color: #333;
+}
+
+#list-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#list-table tr {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#list-table tr:hover {
+    background-color: rgba(20, 147, 220, 0.2);
+}
+
+#list-table th, #list-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+#list-table th:first-child, #list-table td:first-child {
+    text-align: left;
+}
+
+#list-table th:last-child, #list-table td:last-child {
+    text-align: right;
+}
+
+#list-table th {
+    background-color: rgb(17, 54, 71);
+    color: white;
+}
+
+/* 
+=========== cadastro_adm ============
+*/
+
+        /* Estilos Gerais */
+        body {
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: #ffffff; /* Fundo branco com bordas arredondadas */
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 50px auto;
+            width: 80%; /* Ajusta a largura da caixa */
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366; /* Azul escuro para o título */
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #003366; /* Azul escuro para as labels */
+            font-size: 1rem;
+        }
+
+        input {
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #0077cc; /* Azul para foco nos campos */
+            outline: none;
+        }
+
+        button {
+            background-color: #0077cc; /* Azul para o botão */
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #005999; /* Azul mais escuro no hover */
+        }
+
+        .alert {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Estilos para o layout e espaçamento */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group input {
+            width: calc(100% - 24px); /* Ajusta a largura */
+            margin: 0 auto;
+        }
+
+/* 
+=========== cadastro_aluno ============
+*/
+        /* Estilos Gerais */
+        body {
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: #ffffff; /* Fundo branco com bordas arredondadas */
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 15px; /* Reduziu o padding */
+            margin: 50px auto;
+            width: 80%; /* Ajusta a largura da caixa */
+            max-width: 550px; /* Reduziu o tamanho máximo */
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366; /* Azul escuro para o título */
+            font-size: 1.8rem; /* Reduziu o tamanho da fonte */
+            margin-bottom: 20px; /* Menos espaço embaixo do título */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Reduziu o gap entre os campos */
+        }
+
+        label {
+            font-weight: bold;
+            color: #003366; /* Azul escuro para as labels */
+            font-size: 0.95rem; /* Reduziu o tamanho da fonte */
+        }
+
+        input {
+            padding: 10px; /* Reduziu o padding */
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 0.95rem; /* Reduziu o tamanho da fonte */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #0077cc; /* Azul para foco nos campos */
+            outline: none;
+        }
+
+        button {
+            background-color: #0077cc; /* Azul para o botão */
+            color: white;
+            border: none;
+            padding: 12px; /* Reduziu o padding */
+            font-size: 1rem; /* Reduziu o tamanho da fonte */
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #005999; /* Azul mais escuro no hover */
+        }
+
+        .alert {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Estilos para o layout e espaçamento */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* Reduziu o espaço entre os campos */
+        }
+
+/* 
+=========== cadastro_paciente ============
+*/
+        body {
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #003366;
+            font-size: 1rem;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #0077cc;
+            outline: none;
+        }
+
+        button {
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #005999;
+        }
+
+/* 
+=========== cadastro_professor ============
+*/
+        body {
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #003366;
+            font-size: 1rem;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #0077cc;
+            outline: none;
+        }
+
+        button {
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #005999;
+        }
+
+/* 
+=========== menu_adm ============
+*/
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0077cc;
+            margin-bottom: 20px;
+        }
+
+        .form-filtro {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-filtro input[type="text"] {
+            width: calc(100% - 110px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-filtro button {
+            padding: 10px 20px;
+            background-color: #0077cc;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-filtro button:hover {
+            background-color: #005999;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-container button {
+            margin: 5px;
+            padding: 10px 20px;
+            background: #0077cc;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-container button:hover {
+            background: #005999;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #0077cc;
+            color: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Estilo da coluna "Tipo" */
+        table td:nth-child(1) {
+            color: #000; /* Mudando a cor do texto para preto */
+        }
+
+        .delete-btn {
+            padding: 8px 12px;
+            background: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #cc0000;
+        }
+
+        .logout {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #ff3333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            color: #cc0000;
+        }
+
+        .alert {
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .alert.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+/* 
+=========== menu_aluno ============
+*/
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+        .main-content {
+            width: 90%;
+            margin: 20px auto;
+            color: #333;
+        }
+        #list-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #list-table th, #list-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        #list-table th {
+            background-color: rgb(17, 54, 71);
+            color: white;
+        }
+        #list-table tr:hover {
+            background-color: rgba(20, 147, 220, 0.2);
+        }
+        .button {
+            background-color: rgb(20, 147, 220);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: rgb(17, 54, 71);
+        }
+        .logout-link {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+
+/* 
+=========== menu_professor ============
+*/
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+        .main-content {
+            width: 90%;
+            margin: 20px auto;
+            color: #333;
+        }
+        #list-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #list-table th, #list-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center; /* Centraliza horizontalmente */
+            vertical-align: middle; /* Centraliza verticalmente */
+        }
+        #list-table th {
+            background-color: rgb(17, 54, 71);
+            color: white;
+        }
+        #list-table tr:hover {
+            background-color: rgba(20, 147, 220, 0.2);
+        }
+        .button {
+            background-color: rgb(20, 147, 220);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: rgb(17, 54, 71);
+        }
+        .logout-link {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+        form {
+            display: inline;
+        }
+
+/* 
+=========== cadastrar_prontuario ============
+*/
+        body {
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            background: #ffffff; /* Fundo branco com bordas arredondadas */
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 15px; /* Diminui o padding para reduzir o tamanho da caixa */
+            margin: 50px auto;
+            width: 80%; /* Diminui a largura da caixa */
+            max-width: 600px; /* Limita a largura máxima da caixa */
+        }
+        
+        h1 {
+            text-align: center;
+            color: #003366; /* Azul escuro para o título */
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #003366; /* Azul escuro para as labels */
+            font-size: 1rem;
+        }
+        
+        input, textarea {
+            padding: 10px; /* Mantém o tamanho de digitação */
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%; /* Ajusta para 100% da largura */
+            box-sizing: border-box;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: #0077cc; /* Azul para foco nos campos */
+            outline: none;
+        }
+        
+        textarea {
+            resize: vertical;
+            height: 100px; /* Mantém o tamanho fixo do campo */
+        }
+        
+        button {
+            background-color: #0077cc; /* Azul para o botão */
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            width: 100%; /* Largura do botão para ocupar 100% do espaço */
+        }
+        
+        button:hover {
+            background-color: #005999; /* Azul mais escuro no hover */
+        }
+        
+        .alert {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        /* Estilos para o layout e espaçamento */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%; /* Garante que os campos de texto também ocupem 100% da largura */
+        }
+
+/* 
+=========== criar_sessao ============
+*/
+        body {
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #003366;
+            font-size: 1rem;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #0077cc;
+            outline: none;
+        }
+
+        .botao {
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .botao:hover {
+            background-color: #005999;
+        }
+
+        .voltar-btn {
+            background-color: #cccccc;
+            color: #003366;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin-bottom: -20px; /* Remove espaço extra abaixo do botão */
+        }
+
+        .voltar-btn:hover {
+            background-color: #b2b2b2;
+        }
+
+        .voltar-container {
+            margin-top: 10px; /* Espaço acima do botão */
+            margin-bottom: 0; /* Remove espaço inferior do container */
+        }
+
+/* 
+=========== prontuario ============
+*/
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+        .main-content {
+            width: 90%;
+            margin: 20px auto;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: rgb(17, 54, 71);
+        }
+        p {
+            margin: 10px 0;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: rgb(17, 54, 71);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: rgb(20, 147, 220);
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: rgb(20, 147, 220);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: rgb(17, 54, 71);
+        }
+
+/* 
+=========== sessao_detalhes ============
+*/
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54, 71));
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        .session-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+            width: 80%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .session-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: rgb(20, 147, 220);
+        }
+
+        .details-section {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .details-section p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 8px 0;
+            padding: 12px 16px;
+            background-color: rgba(240, 240, 240, 0.9);
+            border-radius: 4px;
+            box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .details-section p strong {
+            display: inline-block;
+            width: 200px;
+            color: rgb(17, 54, 71);
+        }
+
+        .btn-back {
+            display: block;
+            margin: 20px auto 0;
+            padding: 15px 30px;
+            background-color: rgb(20, 147, 220);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            width: fit-content;
+        }
+
+        .btn-back:hover {
+            background-color: rgb(17, 54, 71);
+        }
+
+        @media (max-width: 768px) {
+            .session-container {
+                width: 95%;
+                height: auto;
+            }
+
+            .details-section p strong {
+                width: 150px;
+            }
+        }
+
+/* 
+=========== sessao_editar ============
+*/
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0077cc;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        form input, form select, form textarea {
+            width: calc(100% - 20px); /* Redução para alinhamento com a margem */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box; /* Inclui o padding no cálculo total */
+        }
+
+        form textarea {
+            resize: vertical;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .btn-container button, 
+        .btn-container a {
+            padding: 10px 20px;
+            text-decoration: none;
+            text-align: center;
+            color: #fff;
+            background: #0077cc;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn-container button:hover, 
+        .btn-container a:hover {
+            background: #005999;
+        }

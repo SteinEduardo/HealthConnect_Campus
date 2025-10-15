@@ -1,3 +1,7 @@
+<?php
+    require_once __DIR__ . '/../../app/Controllers/sessao/sassaoController.php'
+?>
+
 <html>
 <body>
     <h1>Detalhes da Sessão</h1>

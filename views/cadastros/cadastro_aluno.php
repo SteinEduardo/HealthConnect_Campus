@@ -1,3 +1,7 @@
+<?php
+    require_once __DIR__ . '/../../app/Controllers/cadastros/cadastro_alunoController.php'
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

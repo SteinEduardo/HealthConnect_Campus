@@ -1,3 +1,7 @@
+<?php
+    require_once __DIR__ . '/../../app/Controllers/sessao/cadastrar_prontuarioController.php'
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

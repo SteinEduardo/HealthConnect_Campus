@@ -1,3 +1,7 @@
+<?php
+    require_once __DIR__ . '/../../app/Controllers/sessao/criar_sessaoController.php'
+?>
+
 <html>
 <head>
     <meta charset="UTF-8">

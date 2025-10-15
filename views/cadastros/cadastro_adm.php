@@ -1,3 +1,7 @@
+<?php
+    require_once __DIR__ . '/../../app/Controllers/cadastros/cadastro_admController.php'
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

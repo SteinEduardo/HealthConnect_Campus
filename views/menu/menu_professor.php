@@ -1,3 +1,7 @@
+<?php
+    require_once __DIR__ . '/../../app/Controllers/menu/menu_professorController.php'
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

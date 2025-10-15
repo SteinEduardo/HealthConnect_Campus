@@ -1,0 +1,22 @@
+# HealthConnect Campus
+
+**Sistema de Gestão Integrada de Prontuários e Sessões para Clínicas Escolares, focado na abordagem Biopsicossocial e na Classificação Internacional de Funcionalidade (CIF).** (Projeto de Iniciação Científica)
+
+---
+
+## Sobre o Projeto
+
+O **HealthConnect Campus** representa um marco inovador na transformação digital e aprimoramento das clínicas escolares de saúde da nossa universidade.
+
+Nosso objetivo é ir além da simples informatização, buscando uma **experiência integrada e eficiente** para estudantes, professores, coordenadores e pacientes. O sistema visa otimizar a gestão de dados clínicos, agendamentos e o acompanhamento de pacientes, incorporando os princípios do modelo biopsicossocial e da Classificação Internacional de Funcionalidade (CIF/OMS).
+
+---
+
+## Tecnologias Utilizadas
+
+O HealthConnect Campus é uma aplicação web desenvolvida com a seguinte *stack* de tecnologias:
+
+* **Backend:** **PHP** (Principal linguagem de desenvolvimento).
+* **Frontend:** HTML, **CSS** (`Main.CSS`) para estilização e usabilidade.
+* **Banco de Dados:** MySQL/MariaDB.
+* **Segurança:** Implementação de hashing seguro para senhas (`gerar_hash.php`). 

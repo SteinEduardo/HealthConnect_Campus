@@ -1,0 +1,15 @@
+Ajustar campos com numeros 
+Adiconar botao para visualizar senhas
+Ajustar campos Nivel
+Porque campo Professor Responsável (Email) é obrigatorio
+Fazer popups se sobre escrever ao inves de abrir uma outra pagina confirmando
+Pagina cadastar aluno, adiconar um botão de voltar
+Cadastrar pacinete
+    Data de abertura adicionar um botão hoje, para seliconar a data hoje
+    Data apos selecionar o mes e ano voltar para o calendario
+    Escolaridade, adiconar um selecionador
+Adiconar mais filtros
+Menu adminstrador
+    Adiocnar um opção para editar as credenciais
+
+

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Sessão</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../../public/assets/css/style.css">
 </head>
 <body>
     <div class="container">

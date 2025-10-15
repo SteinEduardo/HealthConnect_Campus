@@ -1,7 +1,6 @@
 -- SCRIPT DE CRIAÇÃO DO SCHEMA COMPLETO (EXECUTAR DENTRO DO BANCO 'a3')
 
 -- Tabela de Administrador (Adm)
--- CORRIGIDO: Usa 'email' no lugar de 'login'
 CREATE TABLE adm (
     id INT(3) NOT NULL AUTO_INCREMENT,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -11,7 +10,7 @@ CREATE TABLE adm (
 );
 
 -- Tabela de Professores
-CREATE TABLE professor ( -- NOME CORRIGIDO: Usa 'professor' no singular
+CREATE TABLE professor 
     id INT(3) NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     cpf VARCHAR(11) NOT NULL UNIQUE,
@@ -23,7 +22,7 @@ CREATE TABLE professor ( -- NOME CORRIGIDO: Usa 'professor' no singular
 );
 
 -- Tabela de Alunos
-CREATE TABLE aluno ( -- NOME CORRIGIDO: Usa 'aluno' no singular
+CREATE TABLE aluno 
     id INT(3) NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     cpf VARCHAR(11) NOT NULL UNIQUE,

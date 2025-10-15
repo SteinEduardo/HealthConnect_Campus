@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . '/../app/Config/config.php');
+require_once __DIR__ . '/../../Config/config.php';
 
 if (isset($_POST['botao']) && $_POST['botao'] == "Cadastrar") {
     $email = $_POST['email'];

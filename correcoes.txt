@@ -17,5 +17,12 @@ Detalhar mais o endereço do pacinete
 Detalhar mais o Contado de emergencial
 Escolaridade adicionar opções
 """""""O que é o campo necessidade
+Atualizar genero em paicente para f m O 
+adicionar outros estilos para
+    detalhes da sessão
+    menu aluno
+    menu Professor
+todos os professores tem acesso a todos alunos, cada professor deve ter acesso a somente aos seus alunos
+
 
 

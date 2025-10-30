@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../Config/config.php';
 
 // NOVO: Define a URL base da sua aplicação (AJUSTE SE O CAMINHO MUDAR)
 // Baseado na sua URL: http://localhost/IC/HealthConnect_Campus/
-$base_path = '/IC/HealthConnect_Campus/'; 
+$base_path = '/UniCuritiba/IC/HealthConnect_Campus/'; 
 
 // Solicita informações de cadastro e registra no banco
 if (isset($_POST['botao']) && $_POST['botao'] == "Cadastrar") {

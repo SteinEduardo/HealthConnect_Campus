@@ -1,4 +1,5 @@
 <?php
+    // O Controller deve buscar os dados da sessão e do paciente para definir $sessao
     require_once __DIR__ . '/../../app/Controllers/sessao/sessao_detalhesController.php'
 ?>
 
@@ -15,12 +16,14 @@
         <h1>Detalhes da Sessão</h1>
         
         <div class="details-section">
-            <p><strong>Data e Hora:</strong> <?php echo $sessao['data_horario']; ?></p>
-            <p><strong>Presença do Paciente:</strong> <?php echo $sessao['presenca'] ? 'Presente' : 'Ausente'; ?></p>
-            <p><strong>Observações:</strong> <?php echo $sessao['observacoes']; ?></p>
+            <p><strong>Data e Hora:</strong> <?php echo $sessao['data']; ?></p>
+            
+            <p><strong>Presença do Paciente:</strong> <?php echo $sessao['anotacao'] === 'presente' ? 'Presente' : 'Ausente'; ?></p>
+            
+            <p><strong>Observações:</strong> <?php echo $sessao['sessao_text']; ?></p>
         </div>
 
-        <a href="prontuario.php?id=<?php echo $sessao['paciente_id']; ?>" class="btn-back">Voltar</a>
+        <a href="prontuario.php?id=<?php echo $id_paciente; ?>" class="btn-back">Voltar</a>
     </div>
 </body>
 </html>

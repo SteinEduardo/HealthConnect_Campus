@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../Config/config.php';
 
-$base_path = '/IC/HealthConnect_Campus/'; 
+$base_path = '/UniCuritiba/IC/HealthConnect_Campus/'; 
 
 // Verifica se o ID do paciente foi passado via GET
 if (isset($_GET['id'])) {

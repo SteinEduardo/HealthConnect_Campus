@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../Config/config.php';
 
 // 1. CRÍTICO: Define a URL base para que o redirecionamento funcione
-$base_path = '/IC/HealthConnect_Campus/'; 
+$base_path = '/UniCuritiba/IC/HealthConnect_Campus/'; 
 
 
 // Verifica se o ID da sessão foi enviado via GET

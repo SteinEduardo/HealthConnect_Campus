@@ -1,14 +1,16 @@
 <?php
-    require_once __DIR__ . '/../../app/Controllers/menu/menu_admController.php'
+require_once __DIR__ . '/../../app/Controllers/menu/menu_admController.php'
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>Menu Administrador</title>
     <link rel="stylesheet" href="../../public/assets/css/style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Menu Administrador</h1>
@@ -21,9 +23,9 @@
         </form>
 
         <div class="btn-container">
-            <button onclick="window.location.href='cadastro_professor.php'">Cadastrar Professor</button>
-            <button onclick="window.location.href='cadastro_aluno.php'">Cadastrar Aluno</button>
-            <button onclick="window.location.href='cadastro_paciente.php'">Cadastrar Paciente</button>
+            <button onclick="window.location.href='../cadastros/cadastro_professor.php'">Cadastrar Professor</button>
+            <button onclick="window.location.href='../cadastros/cadastro_aluno.php'">Cadastrar Aluno</button>
+            <button onclick="window.location.href='../cadastros/cadastro_paciente.php'">Cadastrar Paciente</button>
         </div>
 
         <table>
@@ -35,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php while ($coluna = mysqli_fetch_array($result)) { 
+                <?php while ($coluna = mysqli_fetch_array($result)) {
                     $link = '#';
                     if ($coluna['tipo'] === 'Aluno') {
                         $link = "menu_aluno.php?id=" . urlencode($coluna['id']);
@@ -65,4 +67,5 @@
         <a href="logout.php" class="logout">Sair</a>
     </div>
 </body>
+
 </html>

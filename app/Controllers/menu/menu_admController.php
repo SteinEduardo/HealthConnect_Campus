@@ -1,6 +1,6 @@
 <?php
-include(__DIR__ . '/../app/Config/config.php');
-include('verifica_Cadastro.php');
+require_once __DIR__ . '/../../Config/config.php';
+include(__DIR__ . '/../verifica_Cadastro.php');
 
 // Deleta registro se solicitado
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tipo'], $_POST['id'])) {

@@ -16,7 +16,7 @@ if (isset($_POST['botao']) && $_POST['botao'] == "Cadastrar") {
 
         if ($result) {
             echo "<script>alert('Administrador cadastrado com sucesso!');</script>";
-            echo "<script>window.location.href='menu_adm.php';</script>";
+            echo "<script>window.location.href='../../../views/menu/menu_adm.php';</script>";
         } else {
             echo "<script>alert('Erro ao cadastrar administrador: " . mysqli_error($con) . "');</script>";
         }

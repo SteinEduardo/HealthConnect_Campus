@@ -1,5 +1,12 @@
 <?php
-    require_once __DIR__ . '/../../app/Controllers/sessao/criar_sessaoController.php'
+    // 1. CHAMA O CONTROLLER
+    require_once __DIR__ . '/../../app/Controllers/sessao/criar_sessaoController.php';
+
+    // 2. CRÍTICO: COLETA O ID DA URL PARA USAR NO FORMULÁRIO (VIEW)
+    $id_prontuario = isset($_GET['id']) ? intval($_GET['id']) : 0; 
+    
+    // Se o ID for inválido (<= 0), para a execução antes de renderizar o formulário
+    if ($id_prontuario === 0) { die("Erro: ID de prontuário inválido na URL."); } 
 ?>
 
 <html>
@@ -15,6 +22,9 @@
         <h1>Criar Sessão</h1>
         
         <form action="#" method="POST">
+            
+            <input type="hidden" name="id_prontuario" value="<?php echo $id_prontuario; ?>">
+            
             <label for="data_horario">Data e Hora:</label>
             <input type="datetime-local" name="data_horario" required>
             
@@ -25,16 +35,13 @@
             </select>
             
             <label for="observacoes">Observações:</label>
-            <textarea name="observacoes" rows="4" cols="50"></textarea>
+            <textarea name="observacoes" rows="4" cols="50" name="observacoes"></textarea> 
             
-            <button type="submit" class="botao">Criar</button>
+            <button type="submit" name="botao" value="Cadastrar" class="botao">Criar</button>
         </form>
 
-        <!-- Botão Voltar -->
         <div class="voltar-container">
-            <form action="prontuario.php?id=<?php echo $id_paciente; ?>" method="get">
-                <button type="submit" class="voltar-btn">Voltar</button>
-            </form>
+            <button type="button" class="voltar-btn" onclick="window.location.href='prontuario.php?id=<?php echo $id_prontuario; ?>'">Voltar</button>
         </div>
     </div>
 </body>

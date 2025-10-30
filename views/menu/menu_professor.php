@@ -1,15 +1,17 @@
 <?php
-    require_once __DIR__ . '/../../app/Controllers/menu/menu_professorController.php'
+require_once __DIR__ . '/../../app/Controllers/menu/menu_professorController.php'
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/assets/css/style.css">
     <title>Lista de Alunos</title>
 </head>
+
 <body>
     <div class="main-content">
         <h1>Bem-vindo, Professor <?php echo $_SESSION['nome']; ?></h1>
@@ -41,11 +43,12 @@
 
         <br>
         <div>
-            <button class="button" onclick="window.location.href='cadastro_aluno.php'">Cadastrar Aluno</button>
-            <button class="button" onclick="window.location.href='cadastro_paciente.php'">Cadastrar Paciente</button>
+            <button class="button" onclick="window.location.href='../cadastros/cadastro_aluno.php'">Cadastrar Aluno</button>
+            <button class="button" onclick="window.location.href='../cadastros/cadastro_paciente.php'">Cadastrar Paciente</button>
         </div>
 
         <a class="logout-link" href="logout.php">Sair</a>
     </div>
 </body>
+
 </html>

@@ -13,7 +13,9 @@ Menu adminstrador
     Adiocnar um opção para editar as credenciais
 Botoes de voltar nos cadastros
 Menu superiror em todas abas?
-
-
+Detalhar mais o endereço do pacinete
+Detalhar mais o Contado de emergencial
+Escolaridade adicionar opções
+"""""""O que é o campo necessidade
 
 

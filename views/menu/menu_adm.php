@@ -1,4 +1,5 @@
 <?php
+// O caminho de inclusão do Controller (que deve estar em app/Controllers/menu/) está correto.
 require_once __DIR__ . '/../../app/Controllers/menu/menu_admController.php'
 ?>
 
@@ -39,12 +40,17 @@ require_once __DIR__ . '/../../app/Controllers/menu/menu_admController.php'
             <tbody>
                 <?php while ($coluna = mysqli_fetch_array($result)) {
                     $link = '#';
+                    
+                    // Definição dos links de navegação da tabela
                     if ($coluna['tipo'] === 'Aluno') {
+                        // Link direto para a mesma pasta (views/menu/)
                         $link = "menu_aluno.php?id=" . urlencode($coluna['id']);
                     } elseif ($coluna['tipo'] === 'Professor') {
+                        // Link direto para a mesma pasta (views/menu/)
                         $link = "menu_professor.php?id=" . urlencode($coluna['id']);
                     } elseif ($coluna['tipo'] === 'Paciente') {
-                        $link = "prontuario.php?id=" . urlencode($coluna['id']);
+                        // CORREÇÃO 2: Paciente (views/menu/ -> views/sessao/prontuario.php)
+                        $link = "../sessao/prontuario.php?id=" . urlencode($coluna['id']);
                     }
                 ?>
                     <tr>
@@ -64,7 +70,7 @@ require_once __DIR__ . '/../../app/Controllers/menu/menu_admController.php'
             </tbody>
         </table>
 
-        <a href="logout.php" class="logout">Sair</a>
+        <a href="../../public/logout.php" class="logout">Sair</a>
     </div>
 </body>
 

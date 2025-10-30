@@ -10,7 +10,7 @@ CREATE TABLE adm (
 );
 
 -- Tabela de Professores
-CREATE TABLE professor 
+CREATE TABLE professor ( 
     id INT(3) NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     cpf VARCHAR(11) NOT NULL UNIQUE,
@@ -22,7 +22,7 @@ CREATE TABLE professor
 );
 
 -- Tabela de Alunos
-CREATE TABLE aluno 
+CREATE TABLE aluno ( 
     id INT(3) NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     cpf VARCHAR(11) NOT NULL UNIQUE,
@@ -66,7 +66,7 @@ CREATE TABLE prontuario (
 );
 
 -- Tabela de Sessões (com FK para prontuario)
-CREATE TABLE sessoes ( -- NOME CORRIGIDO: Usa 'sessoes' no plural
+CREATE TABLE sessoes (
     id INT(3) NOT NULL AUTO_INCREMENT,
     id_prontuario INT(3) NOT NULL,
     data DATE NOT NULL,

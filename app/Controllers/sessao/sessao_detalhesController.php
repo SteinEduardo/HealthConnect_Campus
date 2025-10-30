@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . '/../app/Config/config.php');
+require_once __DIR__ . '/../../Config/config.php';
 
 // Verifica se o ID da sessão foi enviado via GET
 if (!isset($_GET['sessao_id'])) {

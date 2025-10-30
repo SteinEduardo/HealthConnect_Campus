@@ -1,6 +1,6 @@
 <?php
-include(__DIR__ . '/../app/Config/config.php');
-include('verifica_Cadastro.php');
+require_once __DIR__ . '/../../Config/config.php';
+include(__DIR__ . '/../verifica_Cadastro.php');
 
 // Excluir aluno se a solicitação POST for enviada
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['excluir_aluno_id'])) {

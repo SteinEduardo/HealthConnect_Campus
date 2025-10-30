@@ -1,5 +1,6 @@
 <?php
-    require_once __DIR__ . '/../../app/Controllers/menu/menu_alunoController.php'
+    // Inclusão do Controller de Menu Aluno (Caminho correto: views/menu/ -> app/Controllers/menu/)
+    require_once __DIR__ . '/../../app/Controllers/menu/menu_alunoController.php';
 ?>
 
 <!DOCTYPE html>
@@ -26,10 +27,13 @@
             <tbody>
                 <?php while ($coluna = mysqli_fetch_array($result)) { ?>
                     <tr>
-                        <td><a href="prontuario.php?id=<?php echo $coluna['id']; ?>"><?php echo $coluna['nome']; ?></a></td>
+                        <td>
+                            <a href="../sessao/prontuario.php?id=<?php echo $coluna['id']; ?>"><?php echo $coluna['nome']; ?></a>
+                        </td>
                         <td><?php echo $coluna['data_abertura']; ?></td>
                         <td>
-                            <button class="button" onclick="window.location.href='cadastrar_prontuario.php?id=<?php echo $coluna['id']; ?>'">
+                            <button class="button" 
+                                onclick="window.location.href='../sessao/cadastrar_prontuario.php?id=<?php echo $coluna['id']; ?>'">
                                 Cadastrar Prontuário
                             </button>
                         </td>
@@ -38,10 +42,11 @@
             </tbody>
         </table>
 
-        <button class="button" onclick="window.location.href='cadastro_paciente.php'">
+        <button class="button" onclick="window.location.href='../cadastros/cadastro_paciente.php'">
             Cadastrar Novo Paciente
         </button>
-        <a class="logout-link" href="logout.php">Sair</a>
+        
+        <a class="logout-link" href="../../public/logout.php">Sair</a>
     </div>
 </body>
 </html>

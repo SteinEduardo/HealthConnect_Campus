@@ -1,39 +1,48 @@
 <?php
-include(__DIR__ . '/../app/Config/config.php');
+// Arquivo: app/Controllers/sessao/prontuarioController.php
 
-// Verifica se o ID do paciente foi enviado via GET
-if (!isset($_GET['id'])) {
-    echo "Paciente não encontrado.";
-    exit;
+require_once __DIR__ . '/../../Config/config.php';
+
+// 1. Coleta o ID do Paciente da URL (Correto)
+$id_paciente = isset($_GET['id']) ? intval($_GET['id']) : 0; 
+
+if ($id_paciente <= 0) {
+    die("ID do paciente não encontrado.");
 }
 
-$id_paciente = intval($_GET['id']); // Garante que o ID é um número inteiro
-
-// Consulta os dados do paciente
+// 2. Consulta para puxar os dados do paciente
+// ATENÇÃO: Se o $con não for definido aqui, verifique o caminho do require_once.
 $query_paciente = "SELECT * FROM paciente WHERE id = $id_paciente";
 $result_paciente = mysqli_query($con, $query_paciente);
+$paciente = mysqli_fetch_assoc($result_paciente);
 
-if (!$result_paciente || mysqli_num_rows($result_paciente) == 0) {
-    echo "Paciente não encontrado.";
-    exit;
+if (!$paciente) {
+    die("Paciente não encontrado no banco de dados.");
 }
 
-$paciente = mysqli_fetch_array($result_paciente);
+// 3. CRÍTICO: Consulta para encontrar o ID do Prontuário (Chave Estrangeira da tabela 'sessoes')
+// Buscamos o prontuário mais recente associado a este paciente.
+$query_prontuario_id = "SELECT id FROM prontuario WHERE id_paciente = $id_paciente ORDER BY id DESC LIMIT 1";
+$result_prontuario_id = mysqli_query($con, $query_prontuario_id);
 
-// 1. Consulta o prontuário do paciente (MANTÉM O NOME DA VARIÁVEL)
-$query_prontuario = "SELECT * FROM prontuario WHERE id_paciente = $id_paciente";
-$result_prontuario = mysqli_query($con, $query_prontuario);
-$prontuario = mysqli_fetch_array($result_prontuario); // Variável $prontuario é definida aqui
+// 4. Salva o ID do Prontuário na variável que será usada na View
+$id_prontuario_atual = 0; 
+if ($prontuario_row = mysqli_fetch_assoc($result_prontuario_id)) {
+    $id_prontuario_atual = $prontuario_row['id'];
+}
 
-// 2. Consulta as sessões do paciente (CORREÇÃO DE SCHEMA E LÓGICA)
-// O prontuário deve existir para buscar as sessões. Se não existir, $prontuario['id'] será nulo.
-if ($prontuario && isset($prontuario['id'])) {
-    // CORREÇÃO: Usa a tabela 'sessoes' (plural) e a chave 'id_prontuario'
-    $query_sessoes = "SELECT * FROM sessoes WHERE id_prontuario = {$prontuario['id']}";
+// 5. Consulta para puxar os dados detalhados do prontuário (Se ele existir)
+$prontuario = null;
+if ($id_prontuario_atual > 0) {
+    $query_prontuario = "SELECT * FROM prontuario WHERE id = $id_prontuario_atual";
+    $result_prontuario = mysqli_query($con, $query_prontuario);
+    $prontuario = mysqli_fetch_assoc($result_prontuario);
+    
+    // 6. Consulta para puxar as sessões (usando o ID do Prontuário encontrado)
+    $query_sessoes = "SELECT * FROM sessoes WHERE id_prontuario = $id_prontuario_atual ORDER BY data DESC";
     $result_sessoes = mysqli_query($con, $query_sessoes);
 } else {
-    // Se não houver prontuário, não há sessões para buscar.
-    $result_sessoes = false; 
+    // Se não houver prontuário, $result_sessoes precisa ser inicializado para evitar erro na View
+    $result_sessoes = null;
 }
-// O restante da parte HTML não foi incluído.
 ?>

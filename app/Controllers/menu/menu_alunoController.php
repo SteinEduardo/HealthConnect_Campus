@@ -1,6 +1,6 @@
 <?php
-include(__DIR__ . '/../app/Config/config.php');
-include('verifica_Cadastro.php');
+require_once __DIR__ . '/../../Config/config.php';
+include(__DIR__ . '/../verifica_Cadastro.php');
 
 // Consulta a lista de pacientes
 $query = "SELECT * FROM paciente";

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuários - HealthConnect Campus</title>
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carregamento de Ícones (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Configuração de Fonte Global */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+        /* Estilos customizados para sombras leves (soft shadows) */
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Estilos para a barra lateral, mantendo a altura total */
+        .sidebar {
+            background-color: #1f2937;
+            min-height: 100vh;
+            color: #d1d5db;
+        }
+        .user-field {
+            transition: height 0.3s ease, opacity 0.3s ease;
+            overflow: hidden;
+            opacity: 1;
+            height: auto;
+        }
+        .user-field.hidden-field {
+            opacity: 0;
+            height: 0;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+    </style>
+</head>
+<body class="flex">
+
+    <!-- 1. BARRA LATERAL (SIDEBAR) -->
+    <aside class="sidebar w-64 p-4 flex flex-col fixed h-full z-10">
+        <!-- Logo e Título -->
+        <div class="flex items-center space-x-2 pb-6 border-b border-gray-700 mb-6">
+            <span class="text-xl font-bold text-cyan-400">H.C.</span>
+            <h1 class="text-xl font-semibold text-white">Campus</h1>
+        </div>
+
+        <!-- Navegação Principal (Foco no Admin) -->
+        <nav class="flex-grow">
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        <span>Dashboard Admin</span>
+                    </a>
+                </li>
+                <!-- Outros Menus (Desativados para o Admin) -->
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                        <span>Menu Professor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                        <span>Menu Aluno</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Seções do Admin - Destaque em Usuários -->
+            <div class="mt-8">
+                <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Gestão</p>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-xl bg-blue-600 text-white font-semibold shadow-md transition duration-150">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                            <span>Usuários</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150">
+                            <i data-lucide="folder-open" class="w-5 h-5"></i>
+                            <span>Prontuários</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150">
+                            <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                            <span>Relatórios</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Rodapé do Sidebar / Logout -->
+        <div class="pt-4 border-t border-gray-700 mt-6">
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-red-700 text-red-400 hover:text-white transition duration-150">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Sair</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- 2. CONTEÚDO PRINCIPAL (Main Content) -->
+    <main class="flex-1 ml-64 p-6 md:p-10">
+        <!-- Cabeçalho (Header) do Conteúdo -->
+        <header class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-gray-800">Cadastro de Novos Usuários</h2>
+            <!-- Avatar do Usuário logado -->
+            <div class="flex items-center space-x-2 bg-white p-2 rounded-full card-shadow">
+                <img src="https://placehold.co/40x40/1f2937/ffffff?text=AD" alt="Avatar Admin" class="rounded-full w-10 h-10 object-cover border-2 border-indigo-400">
+                <span class="hidden md:block text-gray-700 font-medium text-sm">Administrador</span>
+            </div>
+        </header>
+
+        <!-- Container do Formulário Principal -->
+        <div class="bg-white p-6 rounded-2xl card-shadow min-h-[70vh] max-w-4xl mx-auto">
+            
+            <div class="mb-8 pb-4 border-b border-gray-200">
+                <p class="text-lg text-gray-600">Selecione o tipo de conta que deseja criar para preencher os campos específicos.</p>
+            </div>
+
+            <form id="user-registration-form">
+                
+                <!-- Seleção do Tipo de Usuário -->
+                <div class="mb-8">
+                    <label for="user_type" class="block text-sm font-medium text-gray-700 mb-2">Tipo de Usuário a Cadastrar *</label>
+                    <select id="user_type" name="user_type" onchange="toggleFormFields(this.value)" class="w-full md:w-1/2 p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-white font-semibold text-lg">
+                        <option value="">-- Selecione o Nível --</option>
+                        <option value="Professor">Professor</option>
+                        <option value="Aluno">Aluno</option>
+                        <option value="Adm">Administrador</option>
+                    </select>
+                </div>
+
+                <!-- Campos Comuns a Todos (Email e Senha são MANDATÓRIOS para Adm) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Email (Comum a Todos) -->
+                    <div class="col-span-full md:col-span-2">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail *</label>
+                        <input type="email" id="email" name="email" placeholder="usuario@clinicapsicologia.com.br" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+
+                    <!-- Senha (Comum a Todos) -->
+                    <div class="col-span-full md:col-span-2">
+                        <label for="senha" class="block text-sm font-medium text-gray-700 mb-1">Senha *</label>
+                        <input type="password" id="senha" name="senha" placeholder="Mínimo 8 caracteres" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+
+                    <!-- Nome (Professor e Aluno) -->
+                    <div id="field-name" class="col-span-full user-field hidden-field">
+                        <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" placeholder="Ex: Ana Maria da Costa" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+
+                    <!-- CPF (Professor e Aluno) -->
+                    <div id="field-cpf" class="col-span-full md:col-span-1 user-field hidden-field">
+                        <label for="cpf" class="block text-sm font-medium text-gray-700 mb-1">CPF *</label>
+                        <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="11" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+
+                    <!-- Telefone (Professor e Aluno) -->
+                    <div id="field-telefone" class="col-span-full md:col-span-1 user-field hidden-field">
+                        <label for="telefone" class="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="11" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+
+                    <!-- RA (Apenas Aluno) -->
+                    <div id="field-ra" class="col-span-full md:col-span-1 user-field hidden-field">
+                        <label for="ra" class="block text-sm font-medium text-gray-700 mb-1">RA (Registro Acadêmico) *</label>
+                        <input type="text" id="ra" name="ra" placeholder="Apenas 9 dígitos" maxlength="9" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                    </div>
+                </div>
+
+                <!-- Botão de Cadastro -->
+                <div class="mt-10 pt-6 border-t border-gray-200 flex justify-end">
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl transition shadow-lg flex items-center">
+                        <i data-lucide="user-plus" class="w-5 h-5 mr-2"></i>
+                        Cadastrar Usuário
+                    </button>
+                </div>
+            </form>
+
+            <div id="custom-message-container"></div>
+        </div>
+
+    </main>
+
+    <!-- 3. Configuração do JavaScript -->
+    <script type="module">
+        // Importações do Firebase (mantidas para estrutura)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Variáveis globais (fornecidas pelo ambiente)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth;
+        
+        /**
+         * Inicializa o Firebase e autentica o usuário.
+         */
+        async function initFirebase() {
+            try {
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.warn("Firebase config não fornecida. Pulando inicialização.");
+                    return;
+                }
+                
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                setLogLevel('debug');
+
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                console.log("Firebase inicializado e usuário autenticado.");
+
+            } catch (error) {
+                console.error("Erro na inicialização ou autenticação do Firebase:", error);
+            }
+        }
+        
+        /**
+         * Alterna a visibilidade dos campos com base no tipo de usuário.
+         * @param {string} userType O tipo de usuário selecionado ('Adm', 'Professor', 'Aluno').
+         */
+        window.toggleFormFields = function(userType) {
+            const allFields = {
+                name: document.getElementById('field-name'),
+                cpf: document.getElementById('field-cpf'),
+                telefone: document.getElementById('field-telefone'),
+                ra: document.getElementById('field-ra')
+            };
+
+            // Esconde todos os campos opcionais
+            Object.values(allFields).forEach(field => {
+                if (field) field.classList.add('hidden-field');
+            });
+            
+            // Define quais campos mostrar
+            let fieldsToShow = [];
+
+            if (userType === 'Professor') {
+                fieldsToShow = [allFields.name, allFields.cpf, allFields.telefone];
+            } else if (userType === 'Aluno') {
+                fieldsToShow = [allFields.name, allFields.cpf, allFields.telefone, allFields.ra];
+            }
+            // Para 'Adm', só Email e Senha (que são sempre visíveis)
+
+            // Mostra os campos relevantes
+            fieldsToShow.forEach(field => {
+                if (field) field.classList.remove('hidden-field');
+            });
+        }
+        
+        /**
+         * Exibe uma mensagem de notificação customizada (substitui alert()).
+         * @param {string} message A mensagem a ser exibida.
+         * @param {string} color A cor (green, red, blue).
+         */
+        function showCustomMessage(message, color) {
+            const container = document.getElementById('custom-message-container');
+            const colorMap = {
+                'green': 'bg-green-500',
+                'red': 'bg-red-500',
+                'blue': 'bg-blue-500',
+            };
+            const infoMessage = document.createElement('div');
+            infoMessage.className = `fixed bottom-4 right-4 ${colorMap[color]} text-white p-4 rounded-xl card-shadow transition duration-300 z-50`;
+            infoMessage.innerHTML = message;
+            container.appendChild(infoMessage);
+            
+            setTimeout(() => {
+                infoMessage.style.opacity = '0';
+                setTimeout(() => infoMessage.remove(), 500);
+            }, 3000);
+        }
+
+        /**
+         * Lógica de envio do formulário (Simulação).
+         */
+        document.getElementById('user-registration-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userType = document.getElementById('user_type').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            
+            if (!userType) {
+                showCustomMessage("Selecione o Tipo de Usuário para continuar.", 'red');
+                return;
+            }
+            if (!email || !senha || senha.length < 8) {
+                 showCustomMessage("Preencha E-mail e Senha (mínimo 8 caracteres).", 'red');
+                return;
+            }
+
+            // Coleta de dados (simulação)
+            const userData = {
+                email: email,
+                senha: senha,
+                nivel: userType,
+            };
+
+            if (userType !== 'Adm') {
+                userData.nome = document.getElementById('nome').value;
+                userData.cpf = document.getElementById('cpf').value;
+                userData.telefone = document.getElementById('telefone').value;
+            }
+
+            if (userType === 'Aluno') {
+                userData.ra = document.getElementById('ra').value;
+            }
+
+            // Aqui você faria a chamada ao Firestore para salvar o novo usuário
+            console.log(`Dados a serem salvos para o nível ${userType}:`, userData);
+            
+            showCustomMessage(`Usuário (${userType}) cadastrado com sucesso! (Simulação)`, 'green');
+            
+            // Limpa o formulário após o cadastro
+            this.reset();
+            toggleFormFields('');
+        });
+
+        // --- Inicialização ---
+        window.onload = function () {
+            // Inicializa ícones Lucide
+            lucide.createIcons();
+            
+            // Verifica e inicializa o Firebase
+            initFirebase();
+
+            // Garante que o formulário comece limpo
+            toggleFormFields('');
+            
+            // Simulação de responsividade (mantida)
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('main');
+            
+            function checkScreenSize() {
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.add('hidden');
+                    mainContent.classList.remove('ml-64');
+                } else {
+                    sidebar.classList.remove('hidden');
+                    mainContent.classList.add('ml-64');
+                }
+            }
+            window.addEventListener('resize', checkScreenSize);
+            window.addEventListener('load', checkScreenSize);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Prontuário - HealthConnect Campus</title>
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carregamento de Ícones (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Configuração de Fonte Global */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Fundo suave */
+        }
+        /* Estilos customizados para sombras leves (soft shadows) */
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Estilos para a barra lateral, mantendo a altura total */
+        .sidebar {
+            background-color: #1f2937; /* Azul escuro/cinza chumbo, como nas referências */
+            min-height: 100vh;
+            color: #d1d5db;
+        }
+        /* Estilo para a aba ativa */
+        .tab-active {
+            border-bottom: 3px solid #06b6d4; /* cor ciano (cyan-500) */
+            color: #06b6d4;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="flex">
+
+    <!-- 1. BARRA LATERAL (SIDEBAR) -->
+    <aside class="sidebar w-64 p-4 flex flex-col fixed h-full z-10">
+        <!-- Logo e Título -->
+        <div class="flex items-center space-x-2 pb-6 border-b border-gray-700 mb-6">
+            <span class="text-xl font-bold text-cyan-400">H.C.</span>
+            <h1 class="text-xl font-semibold text-white">Campus</h1>
+        </div>
+
+        <!-- Navegação Principal (Simulando que o Aluno está navegando) -->
+        <nav class="flex-grow">
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        <span>Dashboard Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                        <span>Menu Professor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                        <span>Menu Aluno</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Seções de Atendimento (destaque para Prontuário) -->
+            <div class="mt-8">
+                <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Atendimento</p>
+                <ul class="space-y-2">
+                    <li class="mt-2">
+                        <!-- Item Ativo: Cadastro de Prontuário -->
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-xl bg-blue-600 text-white font-semibold shadow-md transition duration-150 ease-in-out">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                            <span>Prontuário Paciente</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                            <span>Meus Pacientes</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Rodapé do Sidebar / Logout -->
+        <div class="pt-4 border-t border-gray-700 mt-6">
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-red-700 text-red-400 hover:text-white transition duration-150">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Sair</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- 2. CONTEÚDO PRINCIPAL (Main Content) -->
+    <main class="flex-1 ml-64 p-6 md:p-10">
+        <!-- Cabeçalho (Header) do Conteúdo -->
+        <header class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-gray-800">Cadastro de Prontuário Clínico</h2>
+            <!-- Avatar do Usuário logado -->
+            <div class="flex items-center space-x-2 bg-white p-2 rounded-full card-shadow">
+                <img src="https://placehold.co/40x40/60a5fa/273a5a?text=RH" alt="Avatar Aluno" class="rounded-full w-10 h-10 object-cover border-2 border-blue-400">
+                <span class="hidden md:block text-gray-700 font-medium text-sm">Aluno: Ricardo H.</span>
+            </div>
+        </header>
+
+        <!-- Container do Formulário Principal -->
+        <div class="bg-white p-6 rounded-2xl card-shadow min-h-[80vh]">
+            
+            <!-- Título e Status do Prontuário -->
+            <div class="mb-6 pb-4 border-b border-gray-200 flex justify-between items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-900">Paciente: João da Silva (ID: #0046)</h3>
+                    <p class="text-sm text-gray-500 mt-1">Status: Atendimento em Andamento - Início: 01/09/2025</p>
+                </div>
+                <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-xl transition shadow-md">
+                    <i data-lucide="save" class="w-4 h-4 inline-block mr-2"></i>
+                    Salvar Rascunho
+                </button>
+            </div>
+
+            <!-- Navegação em Abas (Tabs) -->
+            <div class="flex border-b border-gray-300 mb-6">
+                <button id="tab-identificacao" onclick="showTab('identificacao')" class="px-4 py-2 text-gray-600 hover:text-cyan-600 transition tab-active">
+                    1. Identificação e Queixa
+                </button>
+                <button id="tab-anamnese" onclick="showTab('anamnese')" class="px-4 py-2 text-gray-600 hover:text-cyan-600 transition">
+                    2. Histórico Clínico (Anamnese)
+                </button>
+                <button id="tab-evolucao" onclick="showTab('evolucao')" class="px-4 py-2 text-gray-600 hover:text-cyan-600 transition">
+                    3. Evolução das Sessões
+                </button>
+                <button id="tab-finalizacao" onclick="showTab('finalizacao')" class="px-4 py-2 text-gray-600 hover:text-cyan-600 transition">
+                    4. Hipótese/Desfecho
+                </button>
+            </div>
+
+            <!-- --------------------------------------- -->
+            <!-- CONTEÚDO DAS ABAS -->
+            <!-- --------------------------------------- -->
+
+            <!-- Aba 1: Identificação e Queixa (Atualizada com campos do CREATE TABLE) -->
+            <div id="content-identificacao" class="tab-content">
+                <h4 class="text-xl font-semibold text-gray-800 mb-4">Informações Pessoais, Contato e Clínica</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- data_abertura -->
+                    <div class="col-span-1">
+                        <label for="data_abertura" class="block text-sm font-medium text-gray-700 mb-1">Data de Abertura do Prontuário</label>
+                        <input type="date" id="data_abertura" name="data_abertura" value="2025-10-31" class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 focus:ring-cyan-500 focus:border-cyan-500" readonly>
+                    </div>
+
+                    <!-- nome -->
+                    <div class="col-span-2">
+                        <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo do Paciente *</label>
+                        <input type="text" id="nome" name="nome" placeholder="Ex: Maria Aparecida da Silva" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                    </div>
+
+                    <!-- data_nascimento -->
+                    <div class="col-span-1">
+                        <label for="data_nascimento" class="block text-sm font-medium text-gray-700 mb-1">Data de Nascimento *</label>
+                        <input type="date" id="data_nascimento" name="data_nascimento" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                    </div>
+
+                    <!-- genero -->
+                    <div class="col-span-1">
+                        <label for="genero" class="block text-sm font-medium text-gray-700 mb-1">Gênero</label>
+                        <select id="genero" name="genero" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500 bg-white">
+                            <option value="">Selecione</option>
+                            <option value="F">Feminino</option>
+                            <option value="M">Masculino</option>
+                            <option value="O">Outro</option>
+                            <option value="N">Prefiro não informar</option>
+                        </select>
+                    </div>
+
+                    <!-- escolaridade -->
+                    <div class="col-span-1">
+                        <label for="escolaridade" class="block text-sm font-medium text-gray-700 mb-1">Escolaridade</label>
+                        <input type="text" id="escolaridade" name="escolaridade" placeholder="Ex: Superior Incompleto" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                    </div>
+
+                    <!-- ocupacao -->
+                    <div class="col-span-3">
+                        <label for="ocupacao" class="block text-sm font-medium text-gray-700 mb-1">Ocupação / Profissão</label>
+                        <input type="text" id="ocupacao" name="ocupacao" placeholder="Ex: Estudante, Analista Financeiro" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                    </div>
+                    
+                    <!-- endereco -->
+                    <div class="col-span-3">
+                        <label for="endereco" class="block text-sm font-medium text-gray-700 mb-1">Endereço Completo</label>
+                        <input type="text" id="endereco" name="endereco" placeholder="Ex: Rua das Flores, 123, Bairro Central" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                    </div>
+                    
+                    <!-- telefone -->
+                    <div class="col-span-1">
+                        <label for="telefone" class="block text-sm font-medium text-gray-700 mb-1">Telefone *</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="11" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                    </div>
+                    
+                    <!-- email -->
+                    <div class="col-span-2">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="nome@exemplo.com.br" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                    </div>
+
+                    <!-- contato_emergencia -->
+                    <div class="col-span-3">
+                        <label for="contato_emergencia" class="block text-sm font-medium text-gray-700 mb-1">Contato de Emergência (Telefone)</label>
+                        <input type="tel" id="contato_emergencia" name="contato_emergencia" placeholder="(XX) XXXXX-XXXX" maxlength="11" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                    </div>
+                    
+                    <!-- necessidade (Queixa Principal) -->
+                    <div class="md:col-span-3 mt-4">
+                        <label for="necessidade" class="block text-sm font-medium text-gray-700 mb-1">Queixa Principal / Necessidade (Motivo da Busca) *</label>
+                        <textarea id="necessidade" name="necessidade" rows="4" placeholder="Descreva o motivo que levou o paciente a procurar atendimento, com as palavras dele(a)." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500"></textarea>
+                    </div>
+
+                    <!-- Campos de Gestão (Ocultos - Seriam preenchidos por lógica do sistema) -->
+                    <input type="hidden" id="estagiario" name="estagiario" value="Ricardo H.">
+                    <input type="hidden" id="orientador" name="orientador" value="Profa. Maria Silva">
+                </div>
+                
+                <div class="mt-8 flex justify-end">
+                    <button onclick="showTab('anamnese')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg flex items-center">
+                        Próxima Seção: Histórico <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Aba 2: Histórico Clínico (Anamnese) -->
+            <div id="content-anamnese" class="tab-content hidden">
+                <h4 class="text-xl font-semibold text-gray-800 mb-4">Histórico Médico e Psicológico</h4>
+                <div class="space-y-6">
+                    <!-- Histórico Pessoal -->
+                    <div>
+                        <label for="historico_pessoal" class="block text-sm font-medium text-gray-700 mb-1">Histórico Pessoal e de Desenvolvimento</label>
+                        <textarea id="historico_pessoal" name="historico_pessoal" rows="6" placeholder="Condições médicas relevantes, histórico escolar, desenvolvimento na infância e adolescência." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500"></textarea>
+                    </div>
+                    <!-- Histórico Familiar -->
+                    <div>
+                        <label for="historico_familiar" class="block text-sm font-medium text-gray-700 mb-1">Histórico Familiar (Saúde Mental e Relacionamentos)</label>
+                        <textarea id="historico_familiar" name="historico_familiar" rows="6" placeholder="Quais são as dinâmicas familiares? Há histórico de transtornos na família?." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500"></textarea>
+                    </div>
+                    <!-- Histórico Psicoterapia Anterior -->
+                    <div>
+                        <label for="psicoterapia_anterior" class="block text-sm font-medium text-gray-700 mb-1">Psicoterapia ou Tratamentos Anteriores</label>
+                        <textarea id="psicoterapia_anterior" name="psicoterapia_anterior" rows="3" placeholder="Se houve, qual foi o período, a abordagem e o desfecho?." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500"></textarea>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-between">
+                    <button onclick="showTab('identificacao')" class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg flex items-center">
+                        <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Seção Anterior
+                    </button>
+                    <button onclick="showTab('evolucao')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg flex items-center">
+                        Próxima Seção: Evolução <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Aba 3: Evolução das Sessões -->
+            <div id="content-evolucao" class="tab-content hidden">
+                <h4 class="text-xl font-semibold text-gray-800 mb-4">Registro Cronológico das Sessões</h4>
+                
+                <!-- Histórico de Evoluções (Simulado) -->
+                <div id="evolucao-historico" class="space-y-4 mb-6 p-4 border border-gray-200 rounded-lg bg-gray-50 max-h-80 overflow-y-auto">
+                    <!-- Registro Simulado de Sessão 1 -->
+                    <div class="p-3 border-l-4 border-green-500 bg-white rounded-lg card-shadow">
+                        <p class="font-bold text-gray-800">Sessão 1: 05/Out/2025</p>
+                        <p class="text-sm text-gray-600 mt-1">Foco na construção de vínculo e coleta de dados preliminares. Paciente verbalizou alívio ao iniciar o processo. Pendência: Faltou detalhamento da intervenção inicial.</p>
+                        <span class="text-xs text-green-600">Revisado pelo Supervisor</span>
+                    </div>
+                    <!-- Registro Simulado de Sessão 2 (Última) -->
+                    <div class="p-3 border-l-4 border-indigo-500 bg-white rounded-lg card-shadow">
+                        <p class="font-bold text-gray-800">Sessão 2: 12/Out/2025 (Último Registro)</p>
+                        <p class="text-sm text-gray-600 mt-1">Paciente demonstrou resistência em aprofundar o tema do luto, focando em tarefas domésticas. Uso de escuta ativa. Plano: Reforçar validação. **PENDENTE DE REVISÃO.**</p>
+                        <span class="text-xs text-indigo-600">Aguardando Revisão</span>
+                    </div>
+                </div>
+
+                <!-- Nova Entrada de Evolução -->
+                <h5 class="text-lg font-semibold text-gray-800 mb-3 mt-6">Registrar Nova Sessão</h5>
+                <div class="space-y-4 p-4 border border-cyan-300 rounded-xl bg-cyan-50">
+                    <div class="flex space-x-4">
+                        <div class="w-1/2">
+                            <label for="data_sessao" class="block text-sm font-medium text-gray-700 mb-1">Data da Sessão</label>
+                            <input type="date" id="data_sessao" name="data_sessao" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                        </div>
+                        <div class="w-1/2">
+                            <label for="duracao_sessao" class="block text-sm font-medium text-gray-700 mb-1">Duração (min)</label>
+                            <input type="number" id="duracao_sessao" name="duracao_sessao" placeholder="Ex: 50" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="evolucao_texto" class="block text-sm font-medium text-gray-700 mb-1">Evolução e Intervenções da Sessão</label>
+                        <textarea id="evolucao_texto" name="evolucao_texto" rows="6" placeholder="Descreva o que ocorreu na sessão, as intervenções do terapeuta (aluno), a reação do paciente e os próximos passos. (Mínimo 50 palavras)." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500"></textarea>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button onclick="showTab('anamnese')" class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg flex items-center">
+                            <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Seção Anterior
+                        </button>
+                        <button onclick="adicionarEvolucaoSimulada()" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg flex items-center">
+                            <i data-lucide="file-plus" class="w-5 h-5 mr-2"></i> Adicionar Evolução
+                        </button>
+                        <button onclick="showTab('finalizacao')" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg flex items-center">
+                            Próxima Seção: Desfecho <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aba 4: Finalização e Hipótese -->
+            <div id="content-finalizacao" class="tab-content hidden">
+                <h4 class="text-xl font-semibold text-gray-800 mb-4">Hipótese Diagnóstica e Desfecho</h4>
+                
+                <div class="space-y-6">
+                    <!-- Hipótese Diagnóstica (Restrito ao Supervisor, mas preenchido pelo aluno em rascunho) -->
+                    <div>
+                        <label for="hipotese" class="block text-sm font-medium text-gray-700 mb-1">Hipótese Diagnóstica (Rascunho do Aluno)</label>
+                        <textarea id="hipotese" name="hipotese" rows="4" placeholder="Com base na Anamnese e Evoluções, qual a sua hipótese de diagnóstico? (Campo supervisionado)" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+                        <p class="text-xs text-yellow-600 mt-1 flex items-center">
+                             <i data-lucide="alert-triangle" class="w-4 h-4 mr-1"></i> Este campo é revisado e finalizado pelo Professor Supervisor.
+                        </p>
+                    </div>
+                    <!-- Plano de Encerramento/Desfecho -->
+                    <div>
+                        <label for="desfecho" class="block text-sm font-medium text-gray-700 mb-1">Plano de Encerramento ou Desfecho (Quando Aplicável)</label>
+                        <textarea id="desfecho" name="desfecho" rows="4" placeholder="Descreva o plano para alta, encaminhamento ou continuidade do tratamento." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-cyan-500 focus:border-cyan-500"></textarea>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-between">
+                    <button onclick="showTab('evolucao')" class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg flex items-center">
+                        <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Seção Anterior
+                    </button>
+                    <button onclick="finalizarProntuario()" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl transition shadow-lg flex items-center">
+                        <i data-lucide="send" class="w-5 h-5 mr-2"></i> Finalizar e Enviar para Supervisão
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+    
+    <!-- 3. Configuração do JavaScript -->
+    <script type="module">
+        // Importações do Firebase (mantidas para estrutura)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Variáveis globais (fornecidas pelo ambiente)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth;
+        
+        /**
+         * Inicializa o Firebase e autentica o usuário.
+         */
+        async function initFirebase() {
+            try {
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.warn("Firebase config não fornecida. Pulando inicialização.");
+                    return;
+                }
+                
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                setLogLevel('debug');
+
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                console.log("Firebase inicializado e usuário autenticado.");
+
+            } catch (error) {
+                console.error("Erro na inicialização ou autenticação do Firebase:", error);
+            }
+        }
+        
+        /**
+         * Lógica de alternância de abas.
+         * @param {string} tabName O nome da aba (identificacao, anamnese, evolucao, finalizacao).
+         */
+        window.showTab = function(tabName) {
+            // Esconde todo o conteúdo
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Remove a classe ativa de todas as abas
+            document.querySelectorAll('button[id^="tab-"]').forEach(tab => {
+                tab.classList.remove('tab-active');
+            });
+
+            // Mostra o conteúdo e define a aba como ativa
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabName}`).classList.add('tab-active');
+            
+            // Rola para o topo do container do formulário para melhor UX
+            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /**
+         * Adiciona uma nova entrada de evolução (Simulação).
+         */
+        window.adicionarEvolucaoSimulada = function() {
+            const dataSessao = document.getElementById('data_sessao').value;
+            const evolucaoTexto = document.getElementById('evolucao_texto').value;
+
+            if (!dataSessao || evolucaoTexto.length < 50) {
+                 // Usando notificação customizada em vez de alert()
+                showCustomMessage("Por favor, preencha a data da sessão e escreva um registro de evolução com no mínimo 50 caracteres.", 'red');
+                return;
+            }
+
+            const historicoContainer = document.getElementById('evolucao-historico');
+            const novaEntrada = document.createElement('div');
+            novaEntrada.className = 'p-3 border-l-4 border-cyan-500 bg-white rounded-lg card-shadow';
+            novaEntrada.innerHTML = `
+                <p class="font-bold text-gray-800">Sessão ${historicoContainer.children.length + 1}: ${new Date(dataSessao).toLocaleDateString('pt-BR')}</p>
+                <p class="text-sm text-gray-600 mt-1">${evolucaoTexto.substring(0, 150)}...</p>
+                <span class="text-xs text-cyan-600">Registro Local - Enviar para Supervisão</span>
+            `;
+            // Adiciona após o registro mais recente (children[1], pulando o título)
+            if (historicoContainer.children.length > 0) {
+                 historicoContainer.insertBefore(novaEntrada, historicoContainer.children[1]);
+            } else {
+                 historicoContainer.appendChild(novaEntrada);
+            }
+
+
+            // Limpa os campos após a adição (simulação)
+            document.getElementById('data_sessao').value = '';
+            document.getElementById('evolucao_texto').value = '';
+            
+            showCustomMessage("Nova evolução adicionada ao rascunho local. Lembre-se de salvar!", 'green');
+        }
+
+        /**
+         * Simulação da finalização do prontuário.
+         */
+        window.finalizarProntuario = function() {
+            // Aqui ocorreria a lógica de validação e envio final dos dados para o Firestore
+            showCustomMessage("Prontuário enviado para Revisão do Supervisor com sucesso!", 'blue');
+        }
+
+        /**
+         * Exibe uma mensagem de notificação customizada (substitui alert()).
+         * @param {string} message A mensagem a ser exibida.
+         * @param {string} color A cor (green, red, blue).
+         */
+        function showCustomMessage(message, color) {
+            const colorMap = {
+                'green': 'bg-green-500',
+                'red': 'bg-red-500',
+                'blue': 'bg-blue-500',
+            };
+            const infoMessage = document.createElement('div');
+            infoMessage.className = `fixed bottom-4 right-4 ${colorMap[color]} text-white p-4 rounded-xl card-shadow transition duration-300 z-50`;
+            infoMessage.innerHTML = message;
+            document.body.appendChild(infoMessage);
+            
+            setTimeout(() => {
+                infoMessage.style.opacity = '0';
+                setTimeout(() => infoMessage.remove(), 500);
+            }, 3000);
+        }
+
+        // --- Inicialização ---
+        window.onload = function () {
+            // Inicializa ícones Lucide
+            lucide.createIcons();
+            
+            // Verifica e inicializa o Firebase
+            initFirebase();
+
+            // Simulação de responsividade
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('main');
+            
+            function checkScreenSize() {
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.add('hidden');
+                    mainContent.classList.remove('ml-64');
+                } else {
+                    sidebar.classList.remove('hidden');
+                    mainContent.classList.add('ml-64');
+                }
+            }
+            window.addEventListener('resize', checkScreenSize);
+            window.addEventListener('load', checkScreenSize);
+            
+            // Garante que a primeira aba esteja visível ao carregar
+            showTab('identificacao');
+        };
+    </script>
+</body>
+</html>

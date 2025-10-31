@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu do Professor - HealthConnect Campus</title>
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carregamento de Ícones (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Configuração de Fonte Global */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Fundo suave */
+        }
+        /* Estilos customizados para sombras leves (soft shadows) */
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Estilos para a barra lateral, mantendo a altura total */
+        .sidebar {
+            background-color: #1f2937; /* Azul escuro/cinza chumbo */
+            min-height: 100vh;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="flex">
+
+    <!-- 1. BARRA LATERAL (SIDEBAR) -->
+    <aside class="sidebar w-64 p-4 flex flex-col fixed h-full z-10">
+        <!-- Logo e Título -->
+        <div class="flex items-center space-x-2 pb-6 border-b border-gray-700 mb-6">
+            <span class="text-xl font-bold text-cyan-400">H.C.</span>
+            <h1 class="text-xl font-semibold text-white">Campus</h1>
+        </div>
+
+        <!-- Navegação Principal -->
+        <nav class="flex-grow">
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        <span>Dashboard Admin</span>
+                    </a>
+                </li>
+                <!-- Item Ativo (Professor Menu) -->
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl bg-blue-600 text-white font-semibold shadow-md transition duration-150 ease-in-out">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                        <span>Menu Professor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                        <span>Menu Aluno</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Seções do Professor -->
+            <div class="mt-8">
+                <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Supervisão</p>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#supervised-cases" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150">
+                            <i data-lucide="folder-open" class="w-5 h-5"></i>
+                            <span>Casos Supervisionados</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#students-list" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                            <span>Meus Alunos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150">
+                            <i data-lucide="message-square" class="w-5 h-5"></i>
+                            <span>Feedbacks Enviados</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Rodapé do Sidebar / Logout -->
+        <div class="pt-4 border-t border-gray-700 mt-6">
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-red-700 text-red-400 hover:text-white transition duration-150">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Sair</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- 2. CONTEÚDO PRINCIPAL (Main Content) -->
+    <main class="flex-1 ml-64 p-6 md:p-10">
+        <!-- Cabeçalho (Header) do Conteúdo -->
+        <header class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-gray-800">Menu do Professor</h2>
+            <!-- Avatar do Usuário logado -->
+            <div class="flex items-center space-x-2 bg-white p-2 rounded-full card-shadow">
+                <img src="https://placehold.co/40x40/f87171/ffffff?text=MS" alt="Avatar Professor" class="rounded-full w-10 h-10 object-cover border-2 border-red-400">
+                <span class="hidden md:block text-gray-700 font-medium text-sm">Profa. Maria Silva</span>
+            </div>
+        </header>
+        
+        <!-- AÇÕES RÁPIDAS (Cadastro de Aluno e Paciente) -->
+        <div class="mb-10 p-4 bg-white rounded-2xl card-shadow flex flex-col md:flex-row justify-between items-center">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4 md:mb-0">Ações de Gestão e Casos:</h3>
+            <div class="flex space-x-3 flex-wrap justify-center md:justify-start gap-3 md:gap-0">
+                <a href="user_registration.html?type=Aluno" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-xl transition shadow-md flex items-center">
+                    <i data-lucide="user-plus" class="w-5 h-5 mr-2"></i>
+                    Cadastrar Novo Aluno
+                </a>
+                <a href="patient_record_registration.html" class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold py-2 px-4 rounded-xl transition shadow-md flex items-center ml-3">
+                    <i data-lucide="clipboard-plus" class="w-5 h-5 mr-2"></i>
+                    Cadastrar Novo Paciente
+                </a>
+            </div>
+        </div>
+
+        <!-- Container de Cards/Métricas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <!-- Card 1: Casos em Supervisão -->
+            <div class="bg-white p-6 rounded-2xl card-shadow border-l-4 border-blue-500">
+                <div class="flex justify-between items-center">
+                    <p class="text-sm font-medium text-gray-500">Casos em Supervisão</p>
+                    <i data-lucide="folder-open" class="w-6 h-6 text-blue-500"></i>
+                </div>
+                <p class="text-3xl font-bold text-gray-900 mt-1">12</p>
+                <p class="text-xs text-gray-400 mt-2">Total de prontuários sob sua responsabilidade.</p>
+            </div>
+
+            <!-- Card 2: Revisões Pendentes -->
+            <div class="bg-white p-6 rounded-2xl card-shadow border-l-4 border-red-500">
+                <div class="flex justify-between items-center">
+                    <p class="text-sm font-medium text-gray-500">Revisões Pendentes</p>
+                    <i data-lucide="alert-triangle" class="w-6 h-6 text-red-500"></i>
+                </div>
+                <p class="text-3xl font-bold text-gray-900 mt-1">3</p>
+                <p class="text-xs text-gray-400 mt-2">Prontuários esperando seu feedback/aprovação.</p>
+            </div>
+
+            <!-- Card 3: Alunos Supervisionados -->
+            <div class="bg-white p-6 rounded-2xl card-shadow border-l-4 border-green-500">
+                <div class="flex justify-between items-center">
+                    <p class="text-sm font-medium text-gray-500">Alunos Supervisionados</p>
+                    <i data-lucide="users" class="w-6 h-6 text-green-500"></i>
+                </div>
+                <p class="text-3xl font-bold text-gray-900 mt-1">7</p>
+                <p class="text-xs text-gray-400 mt-2">Total de alunos acompanhados neste semestre.</p>
+            </div>
+        </div>
+
+        <!-- Seção: Revisões Pendentes (Mantida) -->
+        <section class="bg-white p-6 rounded-2xl card-shadow mb-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6">Revisões de Prontuários Pendentes (3)</h3>
+            
+            <!-- Lista de Revisões (Simulação) -->
+            <div class="space-y-4">
+                <!-- Item 1 Pendente (Alto) -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border border-red-200 rounded-xl bg-red-50">
+                    <div class="flex items-center space-x-4 mb-2 sm:mb-0">
+                        <i data-lucide="file-text" class="w-6 h-6 text-red-600 flex-shrink-0"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Paciente: Ana C. (ID: #0087)</p>
+                            <p class="text-sm text-gray-600">Aluno: João P. | Última Evolução: 1 dia atrás</p>
+                        </div>
+                    </div>
+                    <a href="patient_record_detail.html?id=0087" class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-xl transition shadow-md text-sm w-full sm:w-auto text-center">
+                        Revisar Agora
+                    </a>
+                </div>
+
+                <!-- Item 2 Pendente (Médio) -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border border-yellow-200 rounded-xl bg-yellow-50">
+                    <div class="flex items-center space-x-4 mb-2 sm:mb-0">
+                        <i data-lucide="file-text" class="w-6 h-6 text-yellow-600 flex-shrink-0"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Paciente: Roberto G. (ID: #0022)</p>
+                            <p class="text-sm text-gray-600">Aluno: Patrícia L. | Última Evolução: 3 dias atrás</p>
+                        </div>
+                    </div>
+                    <a href="patient_record_detail.html?id=0022" class="bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-2 px-4 rounded-xl transition shadow-md text-sm w-full sm:w-auto text-center">
+                        Revisar Agora
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- NOVO: Seção - Lista de Alunos Supervisionados -->
+        <section id="students-list" class="bg-white p-6 rounded-2xl card-shadow mb-8">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                <i data-lucide="users" class="w-6 h-6 text-green-600 mr-2"></i>
+                Meus Alunos Supervisionados (7)
+            </h3>
+
+            <div class="space-y-3">
+                <!-- Aluno 1 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition">
+                    <div class="flex items-center space-x-4 mb-2 sm:mb-0">
+                        <img src="https://placehold.co/40x40/6366f1/ffffff?text=JP" alt="Avatar Aluno" class="rounded-full w-10 h-10 object-cover border-2 border-indigo-400">
+                        <div>
+                            <p class="font-semibold text-indigo-700">João Pedro</p>
+                            <p class="text-sm text-gray-600">Psicologia | <span class="text-green-600 font-medium">3 Casos Ativos</span></p>
+                        </div>
+                    </div>
+                    <a href="student_profile.html?id=jp" class="text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-lg text-sm transition">
+                        Ver Perfil
+                        <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Aluno 2 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition">
+                    <div class="flex items-center space-x-4 mb-2 sm:mb-0">
+                        <img src="https://placehold.co/40x40/10b981/ffffff?text=PL" alt="Avatar Aluno" class="rounded-full w-10 h-10 object-cover border-2 border-emerald-400">
+                        <div>
+                            <p class="font-semibold text-emerald-700">Patrícia Lima</p>
+                            <p class="text-sm text-gray-600">Medicina | <span class="text-green-600 font-medium">2 Casos Ativos</span></p>
+                        </div>
+                    </div>
+                    <a href="student_profile.html?id=pl" class="text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-lg text-sm transition">
+                        Ver Perfil
+                        <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Aluno 3 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition">
+                    <div class="flex items-center space-x-4 mb-2 sm:mb-0">
+                        <img src="https://placehold.co/40x40/f97316/ffffff?text=FA" alt="Avatar Aluno" class="rounded-full w-10 h-10 object-cover border-2 border-orange-400">
+                        <div>
+                            <p class="font-semibold text-orange-700">Fernanda Abreu</p>
+                            <p class="text-sm text-gray-600">Enfermagem | <span class="text-green-600 font-medium">1 Caso Ativo</span></p>
+                        </div>
+                    </div>
+                    <a href="student_profile.html?id=fa" class="text-indigo-600 hover:text-indigo-800 font-medium py-1 px-3 rounded-lg text-sm transition">
+                        Ver Perfil
+                        <i data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <a href="#" class="text-sm text-indigo-500 hover:text-indigo-700 font-medium transition duration-150">Ver lista completa de 7 alunos</a>
+            </div>
+        </section>
+
+        <!-- NOVO: Seção - Lista Completa de Prontuários Ativos -->
+        <section id="supervised-cases" class="bg-white p-6 rounded-2xl card-shadow">
+            <h3 class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
+                <i data-lucide="clipboard-list" class="w-6 h-6 text-blue-600 mr-2"></i>
+                Prontuários Ativos (12 Casos)
+            </h3>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">
+                                Paciente (ID)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Aluno Responsável
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden sm:table-cell">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">
+                                Ações
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- Caso 1 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                Ana C. <span class="text-gray-400">(#0087)</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                João Pedro
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                    Revisão Pendente
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="patient_record_detail.html?id=0087" class="text-blue-600 hover:text-blue-900 font-semibold transition">Detalhes</a>
+                            </td>
+                        </tr>
+                        <!-- Caso 2 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                Roberto G. <span class="text-gray-400">(#0022)</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                Patrícia Lima
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                    Revisão Pendente
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="patient_record_detail.html?id=0022" class="text-blue-600 hover:text-blue-900 font-semibold transition">Detalhes</a>
+                            </td>
+                        </tr>
+                        <!-- Caso 3 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                Mariana V. <span class="text-gray-400">(#0145)</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                João Pedro
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Em Evolução
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="patient_record_detail.html?id=0145" class="text-blue-600 hover:text-blue-900 font-semibold transition">Detalhes</a>
+                            </td>
+                        </tr>
+                        <!-- Mais Casos... (Simulação) -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                Carlos R. <span class="text-gray-400">(#0099)</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                Fernanda Abreu
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Em Evolução
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="patient_record_detail.html?id=0099" class="text-blue-600 hover:text-blue-900 font-semibold transition">Detalhes</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 text-center">
+                <a href="#" class="text-sm text-blue-500 hover:text-blue-700 font-medium transition duration-150">Ver todos os 12 prontuários</a>
+            </div>
+        </section>
+
+
+        <!-- Modal para Feedback de IA (Mantido da versão anterior) -->
+        <div id="ia-feedback-modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center p-4 z-50">
+            <!-- Conteúdo do Modal -->
+            <div class="bg-white p-8 rounded-2xl w-full max-w-lg card-shadow">
+                <div class="flex justify-between items-start mb-4">
+                    <h4 class="text-xl font-bold text-gray-800 flex items-center">
+                        <i data-lucide="sparkles" class="w-6 h-6 text-yellow-500 mr-2"></i> Feedback de Supervisão IA
+                    </h4>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <p class="text-gray-600 mb-4" id="modal-description">Gerando análise de supervisão para o prontuário selecionado. Por favor, aguarde...</p>
+                
+                <div id="ia-result-content" class="min-h-[100px] flex items-center justify-center">
+                    <!-- Loader Simulado -->
+                    <i data-lucide="loader-circle" class="w-8 h-8 text-blue-500 animate-spin"></i>
+                </div>
+                
+                <div class="mt-6 text-right">
+                    <button onclick="closeModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-xl transition">Fechar</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    
+    <!-- 3. Configuração do JavaScript -->
+    <script type="module">
+        // Importações do Firebase (mantidas para estrutura)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Variáveis globais (fornecidas pelo ambiente)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth;
+        
+        // Configurações do Gemini API
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=`;
+        const API_KEY = ""; // Será preenchida pelo Canvas
+
+        /**
+         * Inicializa o Firebase e autentica o usuário.
+         */
+        async function initFirebase() {
+            try {
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.warn("Firebase config não fornecida. Pulando inicialização.");
+                    return;
+                }
+                
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                setLogLevel('debug');
+
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                console.log("Firebase inicializado e usuário autenticado.");
+
+            } catch (error) {
+                console.error("Erro na inicialização ou autenticação do Firebase:", error);
+            }
+        }
+
+        /**
+         * Abre o modal de feedback e inicia a geração da análise.
+         */
+        window.openModal = async function(caseData) {
+            document.getElementById('ia-feedback-modal').classList.remove('hidden');
+            document.getElementById('ia-feedback-modal').classList.add('flex');
+
+            document.getElementById('modal-description').textContent = "Gerando análise de supervisão para o prontuário selecionado. Por favor, aguarde...";
+            document.getElementById('ia-result-content').innerHTML = '<i data-lucide="loader-circle" class="w-8 h-8 text-blue-500 animate-spin"></i>';
+            lucide.createIcons();
+            
+            await gerarFeedbackSupervisao(caseData);
+        }
+
+        /**
+         * Fecha o modal.
+         */
+        window.closeModal = function() {
+            document.getElementById('ia-feedback-modal').classList.add('hidden');
+            document.getElementById('ia-feedback-modal').classList.remove('flex');
+        }
+
+        /**
+         * Gera feedback de supervisão usando a Gemini API.
+         * @param {object} caseData Dados simulados do prontuário para análise.
+         */
+        async function gerarFeedbackSupervisao(caseData) {
+            // Simulação de dados do prontuário que seriam extraídos do Firestore
+            const prompt = `Analise a situação clínica a seguir e forneça um feedback de supervisão em português para o aluno/estagiário, focando em pontos fortes e áreas de melhoria.
+            
+            **Detalhes do Caso:**
+            - Paciente: ${caseData.paciente}
+            - Aluno/Estagiário: ${caseData.aluno}
+            - Última Evolução Registrada: "${caseData.evolucao}"
+            
+            **Formato do Feedback (Markdown):**
+            
+            ## Feedback de Supervisão (Sugestão de Revisão)
+            
+            **Pontos Fortes:**
+            - [Máximo 1 ponto.]
+            
+            **Áreas de Melhoria e Questões para Reflexão:**
+            - [Máximo 2 pontos de melhoria no registro ou na conduta.]
+            
+            **Sugestão de Próxima Ação (Para o Professor):**
+            - [Máximo 1 sugestão objetiva.]
+            `;
+
+            const systemPrompt = "Você é um professor supervisor de psicologia clínica. Seu objetivo é fornecer um feedback construtivo, estruturado e profissional sobre o registro de um prontuário de aluno, usando um tom instrutivo e encorajador.";
+            
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+            
+            let attempts = 0;
+            const maxAttempts = 5;
+            let delay = 1000;
+            
+            while (attempts < maxAttempts) {
+                try {
+                    const response = await fetch(GEMINI_API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP: ${response.status}`);
+                    }
+                    
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "Erro ao processar a resposta da IA.";
+                    
+                    // Exibe o resultado no modal
+                    document.getElementById('modal-description').textContent = `Feedback gerado para o caso ${caseData.paciente}:`;
+                    document.getElementById('ia-result-content').innerHTML = formatMarkdownToHtml(text);
+                    return;
+
+                } catch (error) {
+                    attempts++;
+                    if (attempts < maxAttempts) {
+                        // Implementa o backoff exponencial
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2;
+                    } else {
+                        document.getElementById('ia-result-content').innerHTML = `<p class="text-red-600">❌ Erro ao gerar feedback após ${maxAttempts} tentativas. Tente novamente mais tarde.</p><p class="text-xs text-gray-500 mt-2">Detalhes: ${error.message}</p>`;
+                        console.error("Erro final na API Gemini:", error);
+                        return;
+                    }
+                }
+            }
+        }
+
+        /**
+         * Converte Markdown simples (principalmente cabeçalhos e listas) para HTML.
+         * Simplificado para o contexto do modal.
+         */
+        function formatMarkdownToHtml(markdown) {
+            let html = markdown;
+            // Headers
+            html = html.replace(/^## (.*$)/gim, '<strong>$1</strong>');
+            // Bold
+            html = html.replace(/\*\*(.*?)\*\*/gim, '<b>$1</b>');
+            // Lists (simples)
+            html = html.replace(/^\* (.*$)/gim, '<li>$1</li>');
+            html = `<ul>${html}</ul>`;
+            html = html.replace('<ul>\n\n##', '<ul>##').replace('##\n\n', '##'); // Limpeza de quebras de linha
+
+            // Quebras de linha para parágrafos
+            html = html.replace(/\n/g, '<br>');
+            html = html.replace(/<br><br>/g, '</p><p>');
+
+            return `<div class="bg-gray-100 p-4 rounded-lg text-sm text-gray-700 space-y-2"><p>${html}</p></div>`;
+        }
+
+        // --- Inicialização ---
+        window.onload = function () {
+            // Inicializa ícones Lucide
+            lucide.createIcons();
+            
+            // Verifica e inicializa o Firebase
+            initFirebase();
+        };
+    </script>
+</body>
+</html>

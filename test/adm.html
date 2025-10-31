@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu do Administrador - HealthConnect Campus</title>
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carregamento de Ícones (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Configuração de Fonte Global */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Fundo suave */
+        }
+        /* Estilos customizados para sombras leves (soft shadows) */
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+        /* Estilos para a barra lateral, mantendo a altura total */
+        .sidebar {
+            background-color: #1f2937; /* Azul escuro/cinza chumbo, como nas referências */
+            min-height: 100vh;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="flex">
+
+    <!-- 1. BARRA LATERAL (SIDEBAR) -->
+    <aside class="sidebar w-64 p-4 flex flex-col fixed h-full z-10">
+        <!-- Logo e Título -->
+        <div class="flex items-center space-x-2 pb-6 border-b border-gray-700 mb-6">
+            <span class="text-xl font-bold text-cyan-400">Health Campus</span>
+            <h1 class="text-xl font-semibold text-white">Anima</h1>
+        </div>
+
+        <!-- Navegação Principal -->
+        <nav class="flex-grow">
+            <ul class="space-y-2">
+                <!-- Item Ativo (Admin Menu) -->
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl bg-blue-600 text-white font-semibold shadow-md transition duration-150 ease-in-out">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        <span>Dashboard Admin</span>
+                    </a>
+                </li>
+                <!-- Outros Menus -->
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                        <span>Menu Professor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150 ease-in-out">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                        <span>Menu Aluno</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Seções do Admin (como na referência 4.jpg - Adjective) -->
+            <div class="mt-8">
+                <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">Gestão</p>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                            <span>Usuários</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150">
+                            <i data-lucide="folder-open" class="w-5 h-5"></i>
+                            <span>Prontuários</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-700 transition duration-150">
+                            <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                            <span>Relatórios</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Rodapé do Sidebar / Logout -->
+        <div class="pt-4 border-t border-gray-700 mt-6">
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-red-700 text-red-400 hover:text-white transition duration-150">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Sair</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- 2. CONTEÚDO PRINCIPAL (Main Content) -->
+    <main class="flex-1 ml-64 p-6 md:p-10">
+        <!-- Cabeçalho (Header) do Conteúdo -->
+        <header class="flex justify-between items-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-800">Menu do Administrador</h2>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-500 hover:text-gray-800 transition">
+                    <i data-lucide="bell" class="w-6 h-6"></i>
+                </button>
+                <!-- Avatar do Usuário Admin -->
+                <div class="flex items-center space-x-2 bg-white p-2 rounded-full card-shadow">
+                    <img src="https://placehold.co/40x40/5eead4/273a5a?text=AD" alt="Avatar Admin" class="rounded-full w-10 h-10 object-cover border-2 border-cyan-400">
+                    <span class="hidden md:block text-gray-700 font-medium">Dr. Eduardo Stein (Admin)</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Seção de Métricas (Cards de Resumo) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+
+            <!-- Card 1: Pacientes Ativos -->
+            <div id="card-pacientes-ativos" class="bg-white p-6 rounded-2xl card-shadow border-l-4 border-green-500">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-gray-500 uppercase">Pacientes Ativos</p>
+                    <i data-lucide="clipboard-check" class="w-6 h-6 text-green-500"></i>
+                </div>
+                <p id="metric-pacientes-ativos" class="text-3xl font-bold text-gray-900 mt-1">145</p>
+                <p class="text-xs text-green-600 mt-2">+12% desde o mês passado</p>
+            </div>
+
+            <!-- Card 2: Professores Supervisores -->
+            <div id="card-professores" class="bg-white p-6 rounded-2xl card-shadow border-l-4 border-blue-500">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-gray-500 uppercase">Professores (Total)</p>
+                    <i data-lucide="briefcase" class="w-6 h-6 text-blue-500"></i>
+                </div>
+                <p id="metric-professores" class="text-3xl font-bold text-gray-900 mt-1">18</p>
+                <p class="text-xs text-blue-600 mt-2">5 em Supervisão Ativa</p>
+            </div>
+
+            <!-- Card 3: Alunos Matriculados -->
+            <div id="card-alunos" class="bg-white p-6 rounded-2xl card-shadow border-l-4 border-yellow-500">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-gray-500 uppercase">Alunos (Estágio)</p>
+                    <i data-lucide="school" class="w-6 h-6 text-yellow-500"></i>
+                </div>
+                <p id="metric-alunos" class="text-3xl font-bold text-gray-900 mt-1">85</p>
+                <p class="text-xs text-yellow-600 mt-2">20 novos neste semestre</p>
+            </div>
+
+            <!-- Card 4: Próximos Agendamentos -->
+            <div id="card-agendamentos" class="bg-white p-6 rounded-2xl card-shadow border-l-4 border-red-500">
+                <div class="flex items-center justify-between">
+                    <p class="text-sm font-medium text-gray-500 uppercase">Agendamentos (Hoje)</p>
+                    <i data-lucide="calendar" class="w-6 h-6 text-red-500"></i>
+                </div>
+                <p id="metric-agendamentos" class="text-3xl font-bold text-gray-900 mt-1">24</p>
+                <p class="text-xs text-red-600 mt-2">1 cancelamento nas últimas 2h</p>
+            </div>
+        </div>
+
+        <!-- NOVO CARD: ANÁLISE INTELIGENTE (Gemini API) -->
+        <div class="mb-10 p-6 bg-white rounded-2xl card-shadow border border-cyan-300">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                    <i data-lucide="brain-circuit" class="w-6 h-6 text-cyan-500 mr-2"></i>
+                    Análise Inteligente de Dados ✨
+                </h3>
+                <button id="btn-analisar" class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-4 rounded-xl transition duration-150 flex items-center shadow-md">
+                    <i data-lucide="send" class="w-4 h-4 mr-2"></i>
+                    Gerar Análise Executiva
+                </button>
+            </div>
+
+            <!-- Área de Resultados da IA -->
+            <div id="ia-resultado" class="mt-4 p-4 bg-gray-50 rounded-lg hidden">
+                <p id="ia-loading" class="text-gray-500 italic hidden flex items-center">
+                    <i data-lucide="loader-circle" class="w-5 h-5 animate-spin mr-2"></i>
+                    Aguarde, a IA está gerando o resumo e as sugestões de gestão...
+                </p>
+                <div id="ia-content">
+                    <!-- O conteúdo gerado pela IA será inserido aqui -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção de Ações e Listas (Baseado na referência 4.jpg - Grid de Pessoas) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Coluna 1: Gestão de Pessoas (Professores Ativos) -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl card-shadow">
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">Professores Supervisores Ativos</h3>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Professor Card Exemplo -->
+                    <div class="text-center p-3 rounded-xl hover:bg-gray-50 transition duration-150 border">
+                        <img src="https://placehold.co/80x80/6366f1/ffffff?text=JM" alt="Avatar" class="rounded-full w-20 h-20 mx-auto mb-2 object-cover">
+                        <p class="font-medium text-gray-900">Prof. João Melo</p>
+                        <p class="text-xs text-gray-500">Clínica Geral</p>
+                        <span class="text-xs text-indigo-600 mt-1 block">5 Casos</span>
+                    </div>
+
+                    <!-- Professor Card Exemplo -->
+                    <div class="text-center p-3 rounded-xl hover:bg-gray-50 transition duration-150 border">
+                        <img src="https://placehold.co/80x80/22c55e/ffffff?text=MS" alt="Avatar" class="rounded-full w-20 h-20 mx-auto mb-2 object-cover">
+                        <p class="font-medium text-gray-900">Profa. Maria Silva</p>
+                        <p class="text-xs text-gray-500">Terapia Cognitiva</p>
+                        <span class="text-xs text-indigo-600 mt-1 block">7 Casos</span>
+                    </div>
+
+                    <!-- Professor Card Exemplo -->
+                    <div class="text-center p-3 rounded-xl hover:bg-gray-50 transition duration-150 border">
+                        <img src="https://placehold.co/80x80/ef4444/ffffff?text=AS" alt="Avatar" class="rounded-full w-20 h-20 mx-auto mb-2 object-cover">
+                        <p class="font-medium text-gray-900">Dr. André Souza</p>
+                        <p class="text-xs text-gray-500">Neuropsicologia</p>
+                        <span class="text-xs text-indigo-600 mt-1 block">4 Casos</span>
+                    </div>
+
+                    <!-- Professor Card Exemplo -->
+                    <div class="text-center p-3 rounded-xl hover:bg-gray-50 transition duration-150 border">
+                        <img src="https://placehold.co/80x80/f97316/ffffff?text=LF" alt="Avatar" class="rounded-full w-20 h-20 mx-auto mb-2 object-cover">
+                        <p class="font-medium text-gray-900">Profa. Luísa F.</p>
+                        <p class="text-xs text-gray-500">Psicanálise</p>
+                        <span class="text-xs text-indigo-600 mt-1 block">6 Casos</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                    <button class="text-blue-600 hover:text-blue-800 text-sm font-semibold transition">
+                        Ver Todos os Usuários <i data-lucide="arrow-right" class="w-4 h-4 inline-block ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Pendências e Logs -->
+            <div class="lg:col-span-1 bg-white p-6 rounded-2xl card-shadow">
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">Pendências e Logs</h3>
+                
+                <ul class="space-y-4">
+                    <li class="flex items-start space-x-3">
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-yellow-500 mt-1 flex-shrink-0"></i>
+                        <div>
+                            <p class="font-medium text-gray-900">Prontuário Pendente</p>
+                            <p class="text-sm text-gray-600">Revisar Prontuário #00123 (Aluno João)</p>
+                            <p class="text-xs text-gray-400">Há 4 horas</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i data-lucide="circle-check" class="w-5 h-5 text-green-500 mt-1 flex-shrink-0"></i>
+                        <div>
+                            <p class="font-medium text-gray-900">Nova Matrícula</p>
+                            <p class="text-sm text-gray-600">Aluno: Pedro Henrique. Status: Ativo.</p>
+                            <p class="text-xs text-gray-400">1 dia atrás</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i data-lucide="file-text" class="w-5 h-5 text-blue-500 mt-1 flex-shrink-0"></i>
+                        <div>
+                            <p class="font-medium text-gray-900">Relatório Automático</p>
+                            <p class="text-sm text-gray-600">Relatório Semanal de Atendimento Clínico Gerado</p>
+                            <p class="text-xs text-gray-400">2 dias atrás</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+    
+    <!-- 3. Configuração do Firebase e JavaScript -->
+    <script type="module">
+        // Importações do Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Variáveis globais (fornecidas pelo ambiente)
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth;
+        
+        // Dados de simulação (que seriam carregados do Firestore)
+        const simData = {
+            pacientesAtivos: 145,
+            professoresTotal: 18,
+            professoresSupervisaoAtiva: 5,
+            alunosMatriculados: 85,
+            alunosNovosSemestre: 20,
+            agendamentosHoje: 24,
+            cancelamentos2h: 1
+        };
+
+        /**
+         * Inicializa o Firebase e autentica o usuário.
+         */
+        async function initFirebase() {
+            try {
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.warn("Firebase config não fornecida. Pulando inicialização.");
+                    return;
+                }
+                
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                setLogLevel('debug'); // Ativar logs de debug
+
+                // Autenticação
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                // Carrega os dados simulados na UI (em um app real, faria onSnapshot)
+                document.getElementById('metric-pacientes-ativos').textContent = simData.pacientesAtivos;
+                document.getElementById('metric-professores').textContent = simData.professoresTotal;
+                document.getElementById('metric-alunos').textContent = simData.alunosMatriculados;
+                document.getElementById('metric-agendamentos').textContent = simData.agendamentosHoje;
+
+                console.log("Firebase inicializado e usuário autenticado.");
+
+            } catch (error) {
+                console.error("Erro na inicialização ou autenticação do Firebase:", error);
+            }
+        }
+
+        /**
+         * Simula a chamada à API Gemini para análise de dados.
+         */
+        async function gerarAnaliseInteligente() {
+            const btn = document.getElementById('btn-analisar');
+            const loading = document.getElementById('ia-loading');
+            const resultadoContainer = document.getElementById('ia-resultado');
+            const conteudo = document.getElementById('ia-content');
+
+            // Desabilita botão e mostra loading
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            resultadoContainer.classList.remove('hidden');
+            loading.classList.remove('hidden');
+            conteudo.innerHTML = '';
+            
+            // Dados atuais formatados para o LLM
+            const dadosParaAnalise = `
+                Métricas Atuais da Clínica-Escola:
+                - Pacientes Ativos: ${simData.pacientesAtivos} (Aumento de 12% no mês)
+                - Professores Supervisores: ${simData.professoresTotal}
+                - Professores em Supervisão Ativa: ${simData.professoresSupervisaoAtiva}
+                - Alunos em Estágio: ${simData.alunosMatriculados} (20 novos neste semestre)
+                - Agendamentos Hoje: ${simData.agendamentosHoje} (1 cancelamento recente)
+            `;
+
+            // System Instruction define a persona e o formato de saída
+            const systemPrompt = "Você é um Analista de Gestão e Qualidade de Clínica-Escola de Psicologia. Sua tarefa é analisar os dados fornecidos e gerar um resumo executivo conciso, focado em capacidade de atendimento e desempenho acadêmico/clínico, e listar duas sugestões de gestão práticas. Use formatação Markdown (títulos, listas). Responda em português.";
+            
+            const userQuery = `Analise as seguintes métricas e forneça um resumo e duas sugestões de gestão para a diretoria: ${dadosParaAnalise}`;
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            let response;
+            let attempts = 0;
+            const maxAttempts = 3;
+
+            // Implementação de Backoff Exponencial para retentativas
+            while (attempts < maxAttempts) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        break; // Sucesso
+                    } else if (response.status === 429 || response.status >= 500) {
+                        // Erro de Rate Limit ou Servidor, tentar novamente
+                        attempts++;
+                        const delay = Math.pow(2, attempts) * 1000;
+                        console.log(`Tentativa ${attempts} falhou. Retentando em ${delay}ms...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    } else {
+                        throw new Error(`Erro da API: ${response.status} ${response.statusText}`);
+                    }
+                } catch (error) {
+                    attempts++;
+                    console.error(`Erro na chamada fetch (Tentativa ${attempts}):`, error);
+                    if (attempts < maxAttempts) {
+                        const delay = Math.pow(2, attempts) * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    }
+                }
+            }
+
+            // Processa a resposta
+            try {
+                const result = await response.json();
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text || "Erro ao gerar análise. Tente novamente.";
+
+                // Formatação simples de Markdown para HTML
+                let formattedText = text
+                    .replace(/^### (.*)$/gm, '<h4 class="text-lg font-bold text-gray-800 mt-4 mb-2">$1</h4>')
+                    .replace(/^## (.*)$/gm, '<h3 class="text-xl font-bold text-gray-800 mt-6 mb-3">$2</h3>')
+                    .replace(/^\* (.*)$/gm, '<li class="list-disc ml-6 text-gray-700">$1</li>')
+                    .replace(/^- (.*)$/gm, '<li class="list-disc ml-6 text-gray-700">$1</li>')
+                    .replace(/\n\n/g, '<p class="mb-3 text-gray-700">') // Parágrafos duplos
+                    .replace(/\n/g, '<br/>'); // Quebra de linha simples
+
+                // Envolve listas
+                if (formattedText.includes('list-disc')) {
+                     formattedText = formattedText.replace(/<li class="list-disc"/g, '<ul><li class="list-disc"')
+                                                  .replace(/<\/li><br\/>/g, '</li></ul>')
+                                                  .replace(/<\/ul><ul>/g, ''); // Limpa <ul> aninhado
+                }
+                
+                conteudo.innerHTML = formattedText;
+
+            } catch (error) {
+                conteudo.innerHTML = `<p class="text-red-500">Ocorreu um erro inesperado ao processar a resposta: ${error.message}</p>`;
+                console.error("Erro ao processar a resposta da IA:", error);
+            } finally {
+                // Habilita botão e esconde loading
+                loading.classList.add('hidden');
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        // --- Inicialização ---
+        window.onload = function () {
+            // Inicializa ícones Lucide
+            lucide.createIcons();
+            
+            // Verifica e inicializa o Firebase
+            initFirebase();
+
+            // Adiciona listener ao botão de análise
+            document.getElementById('btn-analisar').addEventListener('click', gerarAnaliseInteligente);
+
+            // Simulação de responsividade
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('main');
+            
+            function checkScreenSize() {
+                if (window.innerWidth < 1024) {
+                    sidebar.classList.add('hidden');
+                    mainContent.classList.remove('ml-64');
+                } else {
+                    sidebar.classList.remove('hidden');
+                    mainContent.classList.add('ml-64');
+                }
+            }
+            window.addEventListener('resize', checkScreenSize);
+            window.addEventListener('load', checkScreenSize);
+        };
+    </script>
+</body>
+</html>

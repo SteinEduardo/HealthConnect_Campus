@@ -22,7 +22,11 @@ adicionar outros estilos para
     detalhes da sessão
     menu aluno
     menu Professor
+    prontuario
 todos os professores tem acesso a todos alunos, cada professor deve ter acesso a somente aos seus alunos
+No prontuario paciente adiconar um botão voltar 
+Editar aluno
+
 
 
 

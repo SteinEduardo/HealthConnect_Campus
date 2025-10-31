@@ -4,7 +4,8 @@
 require_once __DIR__ . '/../../Config/config.php';
 
 // Define a URL base para que o redirecionamento funcione corretamente
-$base_path = '/UniCuritiba/IC/HealthConnect_Campus/'; 
+$base_path = '/IC/HealthConnect_Campus/'; 
+///UniCuritiba
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     

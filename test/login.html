@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - HealthConnect Campus</title>
+    <!-- Carregamento do Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carregamento de Ícones (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Configuração de Fonte Global */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        /* Estilos customizados para sombras leves (soft shadows) */
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+        }
+        /* Efeito de fundo sutil */
+        .login-bg {
+            background-image: linear-gradient(135deg, #e0f2f7 0%, #f7f9fc 50%, #e0f2f7 100%);
+        }
+    </style>
+</head>
+<body class="login-bg">
+
+    <!-- Container Central do Formulário de Login -->
+    <div class="w-full max-w-md mx-auto p-8 bg-white rounded-2xl card-shadow border border-gray-100">
+
+        <!-- Header e Logo -->
+        <div class="text-center mb-8">
+            <div class="flex items-center justify-center space-x-2 mb-2">
+                <span class="text-3xl font-bold text-cyan-500">H.C.</span>
+                <h1 class="text-3xl font-extrabold text-gray-800">Campus</h1>
+            </div>
+            <p class="text-xl text-gray-600 font-semibold mt-4">Bem-vindo(a) de volta</p>
+            <p class="text-sm text-gray-500">Acesse sua conta para continuar</p>
+        </div>
+
+        <!-- Formulário de Login -->
+        <form id="login-form">
+            
+            <div class="space-y-5">
+                <!-- Campo E-mail -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                    <div class="relative">
+                        <input type="email" id="email" name="email" required placeholder="seu.usuario@clinicapsicologia.com.br"
+                               class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <i data-lucide="mail" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
+                    </div>
+                </div>
+
+                <!-- Campo Senha -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required placeholder="********"
+                               class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <i data-lucide="lock" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
+                    </div>
+                </div>
+
+                <!-- Simulação de Nível (A ser determinado pelo Backend/Auth) -->
+                <div class="hidden">
+                    <label for="nivel-simulacao" class="block text-sm font-medium text-gray-700 mb-1">Nível de Acesso (Simulação)</label>
+                    <select id="nivel-simulacao" class="w-full p-3 border border-gray-300 rounded-lg bg-white">
+                        <option value="Admin">Admin (Para testar Dashboard Admin)</option>
+                        <option value="Professor">Professor (Para testar Dashboard Professor)</option>
+                        <option value="Aluno">Aluno (Para testar Dashboard Aluno)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Botão de Login -->
+            <button type="submit" id="login-button" 
+                    class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition duration-150 ease-in-out shadow-md flex items-center justify-center">
+                <span id="button-text">Entrar</span>
+                <i data-lucide="log-in" class="w-5 h-5 ml-2" id="button-icon"></i>
+            </button>
+            
+            <!-- Mensagem de Erro/Sucesso (customizada) -->
+            <div id="message-container" class="mt-4 p-3 rounded-lg text-sm text-center hidden"></div>
+        </form>
+
+        <!-- Links de Recuperação/Ajuda -->
+        <div class="mt-6 text-center text-sm">
+            <a href="#" class="text-blue-600 hover:underline">Esqueceu sua senha?</a>
+        </div>
+    </div>
+
+    <!-- 3. Configuração do JavaScript -->
+    <script type="module">
+        // Importações do Firebase (mantidas para estrutura)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        // Auth para simular o fluxo de login
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Variáveis globais (fornecidas pelo ambiente)
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        
+        let auth;
+        
+        /**
+         * Inicializa o Firebase.
+         */
+        function initFirebase() {
+            try {
+                if (Object.keys(firebaseConfig).length === 0) {
+                    // console.warn("Firebase config não fornecida. Pulando inicialização.");
+                    return;
+                }
+                
+                const app = initializeApp(firebaseConfig);
+                // Não precisamos do Firestore para o login, mas mantemos a importação para consistência
+                // db = getFirestore(app); 
+                auth = getAuth(app);
+                // setLogLevel('debug'); // Descomentar para debug
+                
+                console.log("Firebase Auth inicializado.");
+
+            } catch (error) {
+                console.error("Erro na inicialização do Firebase:", error);
+            }
+        }
+        
+        /**
+         * Exibe uma mensagem de status na tela.
+         * @param {string} message A mensagem a ser exibida.
+         * @param {string} type O tipo de mensagem ('success' ou 'error').
+         */
+        function showMessage(message, type) {
+            const container = document.getElementById('message-container');
+            container.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
+            
+            if (type === 'error') {
+                container.classList.add('bg-red-100', 'text-red-700');
+            } else if (type === 'success') {
+                container.classList.add('bg-green-100', 'text-green-700');
+            }
+            container.textContent = message;
+            container.classList.remove('hidden');
+
+            setTimeout(() => {
+                container.classList.add('hidden');
+            }, 5000);
+        }
+
+        /**
+         * Simula o processo de login e redirecionamento.
+         */
+        async function handleLogin(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const nivelSimulacao = document.getElementById('nivel-simulacao').value; // Usado para simular redirecionamento
+            
+            const button = document.getElementById('login-button');
+            const buttonText = document.getElementById('button-text');
+            const buttonIcon = document.getElementById('button-icon');
+
+            // 1. Validação básica
+            if (!email || !password) {
+                showMessage("Preencha todos os campos.", 'error');
+                return;
+            }
+
+            // 2. Estado de Carregamento
+            buttonText.textContent = 'Entrando...';
+            button.disabled = true;
+            buttonIcon.innerHTML = '<i data-lucide="loader-circle" class="w-5 h-5 ml-2 animate-spin"></i>';
+            lucide.createIcons(); // Recria o ícone de loader
+
+            try {
+                // *** SIMULAÇÃO DE AUTENTICAÇÃO E REDIRECIONAMENTO ***
+                
+                // Em um ambiente real, você faria signInWithEmailAndPassword(auth, email, password);
+                // E depois verificaria o Nível do usuário no Firestore para redirecionar.
+                
+                // Simulação: Se a senha for '123456', o login é aceito para demonstração.
+                if (password === '123456') {
+                    
+                    showMessage(`Login bem-sucedido! Redirecionando como ${nivelSimulacao}...`, 'success');
+                    
+                    // Lógica de Redirecionamento (Simulação com base no select de nível)
+                    setTimeout(() => {
+                        let redirectUrl = 'admin_dashboard.html'; // Padrão
+                        
+                        if (nivelSimulacao === 'Professor') {
+                            redirectUrl = 'teacher_dashboard.html';
+                        } else if (nivelSimulacao === 'Aluno') {
+                            redirectUrl = 'student_dashboard.html';
+                        }
+                        
+                        // Redirecionamento na simulação (Você deve substituir por window.location.href em produção)
+                        console.log(`Simulando redirecionamento para: ${redirectUrl}`);
+                        alert(`Login OK. Redirecionando para: ${redirectUrl}`); // Usando alert apenas para debug do fluxo
+
+                    }, 1500);
+
+                } else {
+                    // Simulação de falha
+                    throw new Error("Credenciais inválidas. Tente novamente.");
+                }
+
+            } catch (error) {
+                const errorMessage = "Erro no Login. Verifique e-mail e senha.";
+                console.error("Erro de autenticação simulado:", error.message);
+                showMessage(errorMessage, 'error');
+            } finally {
+                // 3. Restaurar Estado do Botão
+                buttonText.textContent = 'Entrar';
+                button.disabled = false;
+                buttonIcon.innerHTML = '<i data-lucide="log-in" class="w-5 h-5 ml-2"></i>';
+                lucide.createIcons();
+            }
+        }
+
+        // --- Inicialização ---
+        window.onload = function () {
+            // Inicializa ícones Lucide
+            lucide.createIcons();
+            
+            // Inicializa o Firebase (Estrutura)
+            initFirebase();
+
+            // Adiciona o listener de submissão do formulário
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+        };
+    </script>
+</body>
+</html>

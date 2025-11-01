@@ -17,6 +17,12 @@
                     <span>Cadastrar Professor</span>
                 </a>
             </li>
+
+            <li>
+                <a href="../../views/cadastros/cadastro_aluno.php" class="nav-item">
+                    <span>Cadastrar Aluno</span>
+                </a>
+            </li>
             
             <li>
                 <a href="../../views/cadastros/cadastro_paciente.php" class="nav-item">

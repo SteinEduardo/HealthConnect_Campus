@@ -317,3 +317,99 @@ table th {
 .delete-btn:hover {
     background-color: #990000;
 }
+
+/*
+=================================================
+=========== 7. ESTILOS DE FORMULÁRIO BASE =======
+=================================================
+*/
+
+/* Estilo que garante que o FORM use 100% da largura e os inputs se ajustem */
+form {
+    display: block; /* Remove o display:grid que estava causando conflito */
+    margin-top: 20px;
+}
+
+/* Estilo para agrupar campos lado a lado (2 ou 3 colunas) */
+.form-row {
+    display: flex;
+    gap: 20px; /* Espaço entre as colunas */
+    margin-bottom: 20px;
+}
+
+/* Campos que ocupam toda a linha */
+.form-full-width {
+    margin-bottom: 20px;
+}
+
+/* Estilo Básico de um Grupo de Campo (label + input) */
+.form-group-field {
+    flex: 1; /* Faz o campo se ajustar ao espaço disponível (ex: 50% em 2 colunas) */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo geral para labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+/* Estilo para Inputs e Selects */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    background-color: white; /* Para Selects */
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+/* Estilo para o Botão de Submit */
+.form-submit-container {
+    margin-top: 30px;
+}
+
+.form-submit-container button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/*
+=================================================
+=========== 8. CORREÇÃO DE BROWSER (UI) =========
+=================================================
+*/
+
+/* CRÍTICO: Oculta as setas para inputs type="number" em TODOS os navegadores */
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Chrome, Safari, Edge */
+    margin: 0; 
+}

@@ -1,66 +1,52 @@
 <?php
+// Arquivo: app/Controllers/menu/menu_admController.php
+
 require_once __DIR__ . '/../../Config/config.php';
-include(__DIR__ . '/../verifica_Cadastro.php');
 
-// Deleta registro se solicitado
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['tipo'], $_POST['id'])) {
-    $tipo = mysqli_real_escape_string($con, $_POST['tipo']);
-    $id = (int)$_POST['id'];
-    $tabela = '';
+// Variáveis que serão passadas para a View
+$alunos = [];
+$professores = [];
+$pacientes = [];
 
-    if ($tipo === 'Aluno') {
-        $tabela = 'aluno';
-    } elseif ($tipo === 'Professor') {
-        $tabela = 'professor';
-    } elseif ($tipo === 'Paciente') {
-        $tabela = 'paciente';
-    }
+// Filtro (se o ADM usar a caixa de busca)
+$filtro = $_GET['filtro'] ?? '';
 
-    if ($tabela) {
-        $query = "DELETE FROM $tabela WHERE id = $id";
-        if (mysqli_query($con, $query)) {
-            $status = "success";
-        } else {
-            $status = "error";
-        }
-    } else {
-        $status = "invalid_type";
+// Função para sanitizar o filtro (usando sintaxe antiga para manter o fluxo)
+$filtro_sql = mysqli_real_escape_string($con, $filtro); 
+$where_clause = $filtro ? "WHERE nome LIKE '%$filtro_sql%'" : '';
+
+// -------------------------------------------------------------------
+// 1. CONSULTA: ALUNOS
+// -------------------------------------------------------------------
+$query_alunos = "SELECT id, nome FROM aluno $where_clause ORDER BY nome";
+$result_alunos = mysqli_query($con, $query_alunos);
+if ($result_alunos) {
+    while ($row = mysqli_fetch_assoc($result_alunos)) {
+        $alunos[] = $row;
     }
 }
 
-// Consulta registros com filtro
-$filtro = isset($_GET['filtro']) ? mysqli_real_escape_string($con, $_GET['filtro']) : '';
-
-$query = "
-    SELECT 'Aluno' AS tipo, a.id, a.nome
-    FROM aluno a
-    WHERE a.nome LIKE '%$filtro%'
-    UNION
-    SELECT 'Professor' AS tipo, pr.id, pr.nome
-    FROM professor pr
-    WHERE pr.nome LIKE '%$filtro%'
-    UNION
-    SELECT 'Paciente' AS tipo, p.id, p.nome
-    FROM paciente p
-    WHERE p.nome LIKE '%$filtro%'
-";
-
-$result = mysqli_query($con, $query);
-
-if (!$result) {
-    echo "Erro na consulta: " . mysqli_error($con);
-    exit;
-}
-
-// Feedback de status
-$status_message = '';
-if (isset($status)) {
-    if ($status === 'success') {
-        $status_message = "<div class='alert success'>Registro deletado com sucesso!</div>";
-    } elseif ($status === 'error') {
-        $status_message = "<div class='alert error'>Erro ao deletar o registro.</div>";
-    } elseif ($status === 'invalid_type') {
-        $status_message = "<div class='alert error'>Tipo de registro inválido!</div>";
+// -------------------------------------------------------------------
+// 2. CONSULTA: PROFESSORES
+// -------------------------------------------------------------------
+$query_professores = "SELECT id, nome FROM professor $where_clause ORDER BY nome";
+$result_professores = mysqli_query($con, $query_professores);
+if ($result_professores) {
+    while ($row = mysqli_fetch_assoc($result_professores)) {
+        $professores[] = $row;
     }
 }
+
+// -------------------------------------------------------------------
+// 3. CONSULTA: PACIENTES
+// -------------------------------------------------------------------
+$query_pacientes = "SELECT id, nome FROM paciente $where_clause ORDER BY nome";
+$result_pacientes = mysqli_query($con, $query_pacientes);
+if ($result_pacientes) {
+    while ($row = mysqli_fetch_assoc($result_pacientes)) {
+        $pacientes[] = $row;
+    }
+}
+
+// O restante do Controller (Lógica de Deleção) viria aqui...
 ?>

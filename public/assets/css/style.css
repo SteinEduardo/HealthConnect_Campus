@@ -413,3 +413,98 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none; /* Chrome, Safari, Edge */
     margin: 0; 
 }
+
+.dashboard-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+.card-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Estilo da Lista de Itens (Alunos/Prontuários) */
+.item-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3b82f6;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 15px;
+}
+
+.item-info {
+    flex-grow: 1;
+}
+
+.item-name {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.item-status {
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+/* Cores para os Status (Revisão, Em Evolução) */
+.status-pending {
+    background-color: #fff3c4;
+    color: #8c6a00;
+}
+
+.status-active {
+    background-color: #d1fae5;
+    color: #059669;
+}
+
+.edit-btn {
+    background-color: #22c55e; /* Verde mais forte */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}

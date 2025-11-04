@@ -2,15 +2,13 @@
 
 require_once __DIR__ . '/../../Config/config.php';
 
-// Verifica se o ID da sessão foi enviado via GET
 if (!isset($_GET['sessao_id'])) {
     echo "Sessão não encontrada.";
     exit;
 }
 
-$sessao_id = intval($_GET['sessao_id']); // Coleta e garante que é um número inteiro
+$sessao_id = intval($_GET['sessao_id']); 
 
-// Consulta os dados da sessão (Sintaxe original mantida para o fluxo)
 $query_sessao = "SELECT * FROM sessoes WHERE id = $sessao_id";
 $result_sessao = mysqli_query($con, $query_sessao);
 

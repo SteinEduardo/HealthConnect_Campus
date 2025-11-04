@@ -2,9 +2,7 @@
 require_once __DIR__ . '/../../Config/config.php';
 
 $base_path = '/IC/HealthConnect_Campus/'; 
-///UniCuritiba
 
-// Verifica se o ID do paciente foi passado via GET
 if (isset($_GET['id'])) {
     $id_paciente = $_GET['id'];
 } else {
@@ -12,7 +10,6 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-// Verifica se o formulário foi enviado
 if (isset($_POST['botao']) && $_POST['botao'] == "Cadastrar") {
     $data_hora = $_POST['data_hora'];
     $avaliacao = $_POST['avaliacao'];
@@ -21,7 +18,6 @@ if (isset($_POST['botao']) && $_POST['botao'] == "Cadastrar") {
 
     if (!empty($data_hora) && !empty($avaliacao) && !empty($historico_familiar) && !empty($historico_social)) {
         
-        // ⚠️ ALERTA DE SEGURANÇA: Query ainda está vulnerável a SQL Injection!
         $query = "INSERT INTO prontuario (id_paciente, data_hora, avaliacao, historico_familiar, historico_social)
                   VALUES ('$id_paciente', '$data_hora', '$avaliacao', '$historico_familiar', '$historico_social')";
         $result = mysqli_query($con, $query);

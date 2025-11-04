@@ -1,13 +1,11 @@
 <?php
 // Arquivo: app/Controllers/cadastros/cadastro_alunoController.php
 
-// Inclusão do config.php (Caminho corrigido: sobe duas vezes para a pasta 'app/')
 require_once __DIR__ . '/../../Config/config.php';
 
-// Define a URL base para que o redirecionamento funcione (Ajuste conforme seu ambiente)
+// Define a URL base para que o redirecionamento funcione - Ajuste conforme seu ambiente
 $base_path = '/UniCuritiba/Projetos/IC_HealthConnect/HealthConnect_Campus/'; 
 
-// CRÍTICO: Toda a lógica de POST deve estar dentro deste bloco!
 if (isset($_POST['botao']) && $_POST['botao'] == "Cadastrar") {
     
     // Coleta todas as variáveis do formulário (incluindo o novo campo)
@@ -18,21 +16,18 @@ if (isset($_POST['botao']) && $_POST['botao'] == "Cadastrar") {
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
     $nivel = $_POST['nivel'];
-    $genero = $_POST['genero'] ?? null; // Gênero é opcional no HTML
-    
-    // Variável que causou o erro, agora está sendo coletada se existir
+    $genero = $_POST['genero'] ?? null;
     $professor_email = $_POST['professor_email']; 
 
-    // 1. Validação simples
+    //Validação
     if (!empty($nome) && !empty($cpf) && !empty($ra) && !empty($senha) && !empty($email) && !empty($telefone)) {
         
-        // ⚠️ ATENÇÃO: Risco de SQL INJECTION - Este código é para fluxo, mas não é seguro!
         $query = "INSERT INTO aluno (nome, cpf, ra, senha, email, telefone, nivel) 
                   VALUES ('$nome', '$cpf', '$ra', '$senha', '$email', '$telefone', '$nivel')";
         
         $result = mysqli_query($con, $query);
 
-        // 2. Lógica de Redirecionamento
+        //Lógica de Redirecionamento
         if ($result) {
             echo "<script>alert('Aluno cadastrado com sucesso!');</script>";
             // Redireciona para o menu principal

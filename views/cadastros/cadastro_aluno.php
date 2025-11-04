@@ -1,14 +1,9 @@
 <?php
-// Arquivo: views/cadastros/cadastro_aluno.php
-
-// CRÍTICO: Inclui o Controller de Aluno
 require_once __DIR__ . '/../../app/Controllers/cadastros/cadastro_alunoController.php';
 
-// 1. CRÍTICO: DEFINE O TIPO DE CADASTRO E O TÍTULO ANTES DO HTML
 $tipo_cadastro = "aluno";
 $page_title = "Cadastrar Aluno";
 
-// 2. INCLUI O HEADER
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
@@ -22,6 +17,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <label for="nome">Nome Completo:</label>
                 <input type="text" name="nome" required>
             </div>
+
             <div class="form-group-field">
                 <label for="cpf">CPF:</label>
                 <input type="text" name="cpf" required>
@@ -33,6 +29,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <label for="email">Email:</label>
                 <input type="email" name="email" required>
             </div>
+
             <div class="form-group-field">
                 <label for="telefone">Telefone:</label>
                 <input type="text" name="telefone" required>
@@ -44,6 +41,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <label for="ra">RA:</label>
                 <input type="text" name="ra" required>
             </div>
+
             <div class="form-group-field">
                 <label for="senha">Senha:</label>
                 <input type="password" name="senha" required>
@@ -75,6 +73,6 @@ require_once __DIR__ . '/../includes/header.php';
 
 
 <?php
-// INCLUI O FOOTER
+
 require_once __DIR__ . '/../includes/footer.php';
 ?>

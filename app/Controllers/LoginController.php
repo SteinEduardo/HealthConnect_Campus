@@ -11,7 +11,7 @@ if (@$_REQUEST['botao'] == "Entrar") {
     $result_adm = mysqli_query($con, $query_adm);
     if ($coluna = mysqli_fetch_array($result_adm)) {
         $_SESSION['id_usuario'] = $coluna['id'];
-        $_SESSION['nome'] = $coluna['email']; // CORRIGIDO: Usa 'email' no lugar de 'nome'
+        $_SESSION['nome'] = $coluna['email'];
         $_SESSION['nivel'] = 'ADM';
         header('Location: ../views/menu/menu_adm.php');
         exit;
@@ -22,7 +22,7 @@ if (@$_REQUEST['botao'] == "Entrar") {
     $result_professor = mysqli_query($con, $query_professor);
    if ($coluna = mysqli_fetch_array($result_professor)) {
         $_SESSION['id_usuario'] = $coluna['id'];
-        $_SESSION['nome'] = $coluna['email']; // CORRIGIDO: Usa 'email' no lugar de 'nome'
+        $_SESSION['nome'] = $coluna['email'];
         $_SESSION['nivel'] = 'Professor';
         header('Location: ../views/menu/menu_professor.php');
         exit;
@@ -33,7 +33,7 @@ if (@$_REQUEST['botao'] == "Entrar") {
     $result_aluno = mysqli_query($con, $query_aluno);
    if ($coluna = mysqli_fetch_array($result_aluno)) {
         $_SESSION['id_usuario'] = $coluna['id'];
-        $_SESSION['nome'] = $coluna['email']; // CORRIGIDO: Usa 'email' no lugar de 'nome'
+        $_SESSION['nome'] = $coluna['email'];
         $_SESSION['nivel'] = 'Aluno';
         header('Location: ../views/menu/menu_aluno.php');
         exit;

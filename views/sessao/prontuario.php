@@ -1,5 +1,4 @@
 <?php
-    // O Controller deve ser corrigido para definir $id_prontuario_atual e buscar os dados
     require_once __DIR__ . '/../../app/Controllers/sessao/prontuarioController.php'
 ?>
 
@@ -38,7 +37,6 @@
             </thead>
             <tbody>
             <?php 
-            // CORREÇÃO DA SINTAXE: Verifica se há resultados válidos para o loop
             if (isset($result_sessoes) && $result_sessoes && mysqli_num_rows($result_sessoes) > 0) {
                 while ($sessao = mysqli_fetch_array($result_sessoes)) { 
             ?>
@@ -55,7 +53,6 @@
             <?php 
                 } // Fim do while
             } else { 
-            // Se não houver sessões
             ?>
                 <tr><td colspan="2">Nenhuma sessão encontrada.</td></tr>
             <?php 
@@ -66,7 +63,6 @@
 
         <div class="btn-container" style="margin-top: 20px;">
             <?php 
-            // CRÍTICO: Usa a variável do Controller para checar e linkar
             if (isset($id_prontuario_atual) && $id_prontuario_atual > 0) { ?>
                 <a href="criar_sessao.php?id=<?php echo $id_prontuario_atual; ?>" class="btn">Criar Sessão</a>
             <?php } else { ?>

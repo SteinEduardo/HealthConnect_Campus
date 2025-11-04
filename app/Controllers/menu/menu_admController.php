@@ -1,17 +1,13 @@
 <?php
-// Arquivo: app/Controllers/menu/menu_admController.php
-
 require_once __DIR__ . '/../../Config/config.php';
 
-// Variáveis que serão passadas para a View
 $alunos = [];
 $professores = [];
 $pacientes = [];
 
-// Filtro (se o ADM usar a caixa de busca)
 $filtro = $_GET['filtro'] ?? '';
 
-// Função para sanitizar o filtro (usando sintaxe antiga para manter o fluxo)
+
 $filtro_sql = mysqli_real_escape_string($con, $filtro); 
 $where_clause = $filtro ? "WHERE nome LIKE '%$filtro_sql%'" : '';
 
@@ -48,5 +44,4 @@ if ($result_pacientes) {
     }
 }
 
-// O restante do Controller (Lógica de Deleção) viria aqui...
 ?>

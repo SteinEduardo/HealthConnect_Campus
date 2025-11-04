@@ -276,13 +276,13 @@ body {
     margin-bottom: 20px;
     display: flex;
     gap: 15px;
-    flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas menores */
+    flex-wrap: wrap;
 }
 
 /* Formulário de Filtro (Posicionado à direita) */
 .form-filtro {
     display: flex;
-    justify-content: flex-end; /* Move o filtro para a direita */
+    justify-content: flex-end; 
     margin-bottom: 20px;
     gap: 10px;
 }
@@ -326,14 +326,14 @@ table th {
 
 /* Estilo que garante que o FORM use 100% da largura e os inputs se ajustem */
 form {
-    display: block; /* Remove o display:grid que estava causando conflito */
+    display: block;
     margin-top: 20px;
 }
 
 /* Estilo para agrupar campos lado a lado (2 ou 3 colunas) */
 .form-row {
     display: flex;
-    gap: 20px; /* Espaço entre as colunas */
+    gap: 20px; 
     margin-bottom: 20px;
 }
 
@@ -344,7 +344,7 @@ form {
 
 /* Estilo Básico de um Grupo de Campo (label + input) */
 .form-group-field {
-    flex: 1; /* Faz o campo se ajustar ao espaço disponível (ex: 50% em 2 colunas) */
+    flex: 1; 
     display: flex;
     flex-direction: column;
 }
@@ -374,7 +374,7 @@ textarea {
     font-size: 1rem;
     box-sizing: border-box;
     transition: border-color 0.2s;
-    background-color: white; /* Para Selects */
+    background-color: white;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -403,7 +403,6 @@ input:focus, select:focus, textarea:focus {
 =================================================
 */
 
-/* CRÍTICO: Oculta as setas para inputs type="number" em TODOS os navegadores */
 input[type=number] {
     -moz-appearance: textfield; /* Firefox */
 }

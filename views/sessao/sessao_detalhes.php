@@ -1,5 +1,4 @@
 <?php
-    // O Controller deve buscar os dados da sessão e do paciente para definir $sessao
     require_once __DIR__ . '/../../app/Controllers/sessao/sessao_detalhesController.php'
 ?>
 

@@ -1,11 +1,8 @@
 <?php
-    // 1. CHAMA O CONTROLLER
     require_once __DIR__ . '/../../app/Controllers/sessao/criar_sessaoController.php';
 
-    // 2. CRÍTICO: COLETA O ID DA URL PARA USAR NO FORMULÁRIO (VIEW)
     $id_prontuario = isset($_GET['id']) ? intval($_GET['id']) : 0; 
     
-    // Se o ID for inválido (<= 0), para a execução antes de renderizar o formulário
     if ($id_prontuario === 0) { die("Erro: ID de prontuário inválido na URL."); } 
 ?>
 

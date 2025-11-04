@@ -1,5 +1,4 @@
 <?php
-    // O Controller deve buscar os dados da sessão, do prontuário e do paciente
     require_once __DIR__ . '/../../app/Controllers/sessao/sessao_editarController.php'
 ?>
 

@@ -41,5 +41,4 @@ if (@$_REQUEST['botao'] == "Entrar") {
 
     echo "<script>alert('Credenciais inválidas.');</script>";
 }
-// O restante da parte HTML não foi incluído para manter o foco na lógica PHP.
 ?>

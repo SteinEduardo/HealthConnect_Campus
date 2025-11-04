@@ -1,17 +1,10 @@
 <?php
-// Arquivo: views/menu/menu_professor.php
-
-// CRÍTICO: Inclui o Controller (com o caminho de config.php corrigido)
 require_once __DIR__ . '/../../app/Controllers/menu/menu_professorController.php';
 
-// Define o título da página
 $page_title = "Dashboard Professor";
 
-// 1. INCLUI O HEADER (Abre o layout de dashboard)
 require_once __DIR__ . '/../includes/header.php'; 
 
-// Variáveis (assumindo que o Controller as define corretamente)
-// $alunos_supervisionados, $prontuarios_ativos, $total_alunos, $total_prontuarios
 ?>
 
 <h1>Meus Alunos Supervisionados (<?php echo $total_alunos; ?>)</h1>
@@ -112,6 +105,5 @@ require_once __DIR__ . '/../includes/header.php';
 </div>
 
 <?php
-// 2. INCLUI O FOOTER
 require_once __DIR__ . '/../includes/footer.php'; 
 ?>

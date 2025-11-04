@@ -1,6 +1,4 @@
 <?php
-// Arquivo: views/menu/menu_adm.php
-
 require_once __DIR__ . '/../../app/Controllers/menu/menu_admController.php';
 
 $page_title = "Menu Administrador - Dashboard";

@@ -1,28 +1,44 @@
 <?php
-    require_once __DIR__ . '/../../app/Controllers/sessao/sessao_detalhesController.php'
+require_once __DIR__ . '/../../app/Controllers/sessao/sessao_detalhesController.php';
+
+$page_title = "Detalhes da Sessão ID: " . ($sessao['id'] ?? 'N/A');
+require_once __DIR__ . '/../includes/header.php'; 
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/assets/css/style.css">
-    <title>Detalhes da Sessão</title>
-</head>
-<body>
-    <div class="session-container">
-        <h1>Detalhes da Sessão</h1>
-        
-        <div class="details-section">
-            <p><strong>Data e Hora:</strong> <?php echo $sessao['data']; ?></p>
-            
-            <p><strong>Presença do Paciente:</strong> <?php echo $sessao['anotacao'] === 'presente' ? 'Presente' : 'Ausente'; ?></p>
-            
-            <p><strong>Observações:</strong> <?php echo $sessao['sessao_text']; ?></p>
-        </div>
+<h1>Detalhes da Sessão</h1>
 
-        <a href="prontuario.php?id=<?php echo $id_paciente; ?>" class="btn-back">Voltar</a>
+<div class="dashboard-card" style="margin-bottom: 25px;">
+    
+    <div class="details-section">
+        
+        <p><strong>Data e Hora:</strong> <?php echo date('d/m/Y H:i', strtotime($sessao['data'])); ?></p>
+        
+        <p><strong>Presença do Paciente:</strong> 
+            <?php 
+            $presenca = $sessao['anotacao'] ?? 'N/A';
+            if ($presenca === 'presente') {
+                echo 'Presente';
+            } elseif ($presenca === 'ausente') {
+                echo 'Ausente';
+            } else {
+                echo 'Não Registrado';
+            }
+            ?>
+        </p>
+        
+        <p><strong>Observações:</strong></p>
+        <div style="background-color: #f7f7f7; padding: 15px; border-radius: 6px; margin-top: 5px; white-space: pre-wrap;">
+            <?php echo htmlspecialchars($sessao['sessao_text'] ?? 'Nenhuma observação registrada.'); ?>
+        </div>
+        
     </div>
-</body>
-</html>
+
+    <div style="margin-top: 25px;">
+        <a href="prontuario.php?id=<?php echo $id_paciente; ?>" class="btn-back edit-btn">Voltar ao Prontuário</a>
+    </div>
+
+</div>
+
+<?php
+require_once __DIR__ . '/../includes/footer.php'; 
+?>

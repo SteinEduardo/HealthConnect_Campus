@@ -1,12 +1,7 @@
 <?php 
-// Arquivo: views/includes/header.php
-
-// Define o título da página
 if (!isset($page_title)) {
     $page_title = "HealthConnect Campus";
 }
-
-// Define o caminho para o CSS (sobe 2x para public/assets/css/)
 $css_path = '../../public/assets/css/style.css'; 
 ?>
 <!DOCTYPE html>

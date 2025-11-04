@@ -34,7 +34,7 @@ CREATE TABLE aluno (
     PRIMARY KEY (id)
 );
 
--- Tabela de Paciente (Não possui FK para aluno_id neste schema)
+-- Tabela de Paciente 
 CREATE TABLE paciente (
     id INT(3) NOT NULL AUTO_INCREMENT,
     data_abertura DATE NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE paciente (
     PRIMARY KEY (id)
 );
 
--- Tabela de Prontuário (com FK para paciente)
+-- Tabela de Prontuário 
 CREATE TABLE prontuario (
     id INT(3) NOT NULL AUTO_INCREMENT,
     id_paciente INT(3) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE prontuario (
     FOREIGN KEY (id_paciente) REFERENCES paciente(id)
 );
 
--- Tabela de Sessões (com FK para prontuario)
+-- Tabela de Sessões 
 CREATE TABLE sessoes (
     id INT(3) NOT NULL AUTO_INCREMENT,
     id_prontuario INT(3) NOT NULL,

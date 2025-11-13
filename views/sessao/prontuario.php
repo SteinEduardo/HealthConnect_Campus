@@ -1,12 +1,17 @@
 <?php
+// Arquivo: views/sessao/prontuario.php
 
 require_once __DIR__ . '/../../app/Controllers/sessao/prontuarioController.php';
 
 $page_title = "Prontuário do Paciente: " . ($paciente['nome'] ?? 'Detalhes');
 require_once __DIR__ . '/../includes/header.php'; 
 
+// Variáveis essenciais
 $id_paciente_url = $paciente['id'] ?? 0;
-$id_prontuario = $id_prontuario_atual ?? 0; // O ID que o Controller puxou do Prontuário
+// Use o ID do prontuário (ou 0 se não for encontrado)
+$id_prontuario = $prontuario_atual['id'] ?? 0; 
+
+$id_sessao_link = $id_prontuario > 0 ? $id_prontuario : $id_paciente_url;
 ?>
 
 <h1>Prontuário do Paciente</h1>
@@ -28,26 +33,36 @@ $id_prontuario = $id_prontuario_atual ?? 0; // O ID que o Controller puxou do Pr
 </div>
 
 <div class="dashboard-card" style="margin-bottom: 25px;">
-    <div class="card-header">
-        <h2>Prontuário</h2>
+    <div class="card-header" style="justify-content: space-between; align-items: center;">
+        <h2>Prontuário e Anamnese</h2>
+        <?php if ($prontuario) { ?>
+            <a href="prontuario_editar.php?id=<?php echo $prontuario['id']; ?>" class="edit-btn">Editar Prontuário</a>
+        <?php } ?>
     </div>
+    
     <?php if ($prontuario) { ?>
         <p><strong>Avaliação:</strong> <br><?php echo $prontuario['avaliacao'] ?? 'N/A'; ?></p>
         <p><strong>Histórico Familiar:</strong> <br><?php echo $prontuario['historico_familiar'] ?? 'N/A'; ?></p>
         <p><strong>Histórico Social:</strong> <br><?php echo $prontuario['historico_social'] ?? 'N/A'; ?></p>
-        
     <?php } else { ?>
-        <p>Prontuário não cadastrado. <a href="../cadastros/cadastrar_prontuario.php?id=<?php echo $id_paciente_url; ?>" class="text-link">Clique para cadastrar.</a></p>
+        <div style="text-align: center; padding: 20px;">
+            <p>Prontuário não cadastrado. É necessário abrir o prontuário antes de criar sessões.</p>
+            <button onclick="window.location.href='../cadastros/cadastrar_prontuario.php?id=<?php echo $id_paciente_url; ?>'" class="edit-btn" style="padding: 10px 20px; background-color: #3b82f6;">
+                Cadastrar Prontuário
+            </button>
+        </div>
     <?php } ?>
 </div>
 
 
 <div class="dashboard-card">
-    <div class="card-header" style="justify-content: space-between;">
+    <div class="card-header" style="justify-content: space-between; align-items: center;">
         <h2>Sessões Registradas</h2>
-        <?php if ($id_prontuario > 0) { ?>
-            <button onclick="window.location.href='criar_sessao.php?id=<?php echo $id_prontuario; ?>'" class="btn" style="padding: 8px 15px;">+ Nova Sessão</button>
-        <?php } ?>
+        
+        <a href="criar_sessao.php?id=<?php echo $id_sessao_link; ?>" class="edit-btn" style="padding: 8px 15px; text-decoration: none;">
+            Nova Sessão
+        </a>
+        
     </div>
 
     <table>
